@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "669749542702",
+    "project_id": "upsczindabaad",
+    "storage_bucket": "upsczindabaad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669749542702:android:dbee7c17237e5c5a9744bf",
+        "android_client_info": {
+          "package_name": "com.example.upsczindabaad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "669749542702-7tiq99v3p7bvn20rr0623lme4fdv2o12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuQgjY3RfvkAJcqalZHr7OlfpqFiQG41M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "669749542702-7tiq99v3p7bvn20rr0623lme4fdv2o12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

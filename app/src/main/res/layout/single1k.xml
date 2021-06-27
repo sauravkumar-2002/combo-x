@@ -14,7 +14,7 @@
         android:layout_marginLeft="87dp"
         android:gravity="right"
         android:layout_marginRight="22dp"
-        android:background="#1590F3"
+        android:background="#D6F1EE"
         android:foregroundGravity="right"
         android:layout_weight="1"
         android:text="TextView"
