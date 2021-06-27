@@ -2,6 +2,7 @@ package com.example.upsczindabaad;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,6 +18,8 @@ public class dashboardg extends AppCompatActivity {
     }
 
     public void startchat(View view) {
+        Intent intent1=new Intent(getApplicationContext(),recviewmainactivity_k.class);
+        startActivity(intent1);
     }
 
     public void createroom(View view) {
