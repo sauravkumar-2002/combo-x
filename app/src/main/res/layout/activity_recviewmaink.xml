@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_gravity="center"
-            android:text="join  room"
+            android:text="join room"
             android:textAlignment="center"
             android:textSize="32dp" />
     </androidx.cardview.widget.CardView>

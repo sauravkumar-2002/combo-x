@@ -18,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import es.dmoral.toasty.Toasty;
-
+//rsrsrrgrd
 public class loginActivityG extends AppCompatActivity {
 
     EditText email,password;
