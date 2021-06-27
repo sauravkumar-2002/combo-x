@@ -38,6 +38,9 @@ public class loginActivityG extends AppCompatActivity {
     }
 
     public void SignUp(View view) {
+
+        Intent intent1=new Intent(getApplicationContext(),signUpactivity.class);
+        startActivity(intent1);
     }
 
     public void forgotPassword(View view) {
@@ -74,12 +77,12 @@ progressBar.setVisibility(View.VISIBLE);
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
-
+progressBar.setVisibility(View.INVISIBLE);
                     Toasty.success(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT, true).show();
                     Intent intent = new Intent(getApplicationContext(), dashboardg.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
-                    finish();
+
                 } else {
                     progressBar.setVisibility(View.INVISIBLE);
                     Toasty.error(getApplicationContext(),task.getException().getMessage()).show();
