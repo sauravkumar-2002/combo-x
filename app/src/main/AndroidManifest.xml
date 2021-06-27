@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UpscZindabaad">
         <activity android:name=".dashboardg"></activity>
-        <activity android:name=".signUpactivity"></activity>
+        <activity android:name=".signUpactivity" />
         <activity android:name=".loginActivityG">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
