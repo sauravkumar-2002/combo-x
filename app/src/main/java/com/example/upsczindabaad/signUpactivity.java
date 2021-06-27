@@ -17,14 +17,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import es.dmoral.toasty.Toasty;
 
 public class signUpactivity extends AppCompatActivity {
-
+    public String usernamestring;
     EditText username,fullname,emailSg,passwordSg;
     ProgressBar progressBarS;
     private FirebaseAuth mAuth1;
+    savingdatamodel savingdatamodel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +42,16 @@ public class signUpactivity extends AppCompatActivity {
         passwordSg=findViewById(R.id.passwords1);
         progressBarS=findViewById(R.id.progressBarS);
         mAuth1 = FirebaseAuth.getInstance();
+
     }
 
     public void signUp(View view) {
+        savedata();
         String emailtext = emailSg.getText().toString().trim();
         String passwordtext = passwordSg.getText().toString().trim();
 
         // ALL THE VALIDATIONS-----
-
+         usernamestring=username.getText().toString().trim();
 
         //EMAIL VALIDATIONS--
         if (emailtext.isEmpty()) {
@@ -100,6 +106,23 @@ public class signUpactivity extends AppCompatActivity {
 
     }
 
+    private void savedata() {
+        FirebaseUser useruid=FirebaseAuth.getInstance().getCurrentUser();
+        String uid1=useruid.getUid();
+        String username1=username.getText().toString().trim();
+        String fullname1=fullname.getText().toString().trim();
+        String email1=emailSg.getText().toString().trim();
+        String password1=passwordSg.getText().toString().trim();
+        FirebaseDatabase df=FirebaseDatabase.getInstance();
+        DatabaseReference reft=df.getReference(uid1);
+        savingdatamodel=new savingdatamodel();
+        savingdatamodel.setEmail1(email1);
+        savingdatamodel.setFullname1(fullname1);
+        savingdatamodel.setUsername1(username1);
+        savingdatamodel.setPassword1(password1);
+        reft.setValue(savingdatamodel);
+
+    }
 
 
     public void LogIN(View view) {
