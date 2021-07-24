@@ -21,11 +21,14 @@ public class dashboardg extends AppCompatActivity {
     }
 
     public void startchat(View view) {
-        Intent intent1=new Intent(getApplicationContext(),individualchat.class);
-        startActivity(intent1);
 
     }
 
     public void createroom(View view) {
+    }
+
+
+
+    public void posts(View view) {
     }
 }
