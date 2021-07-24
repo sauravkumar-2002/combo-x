@@ -55,8 +55,13 @@ public class dashboardg extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void myprofile(View view) {
         Intent intent1=new Intent(getApplicationContext(),myprofile.class);
-        startActivity(intent1);
+        Pair[] pairs=new Pair[1];
+        pairs[0]=new Pair<View,String>(mainImage,"myProfileImage");
+
+        ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation(this,pairs);
+        startActivity(intent1,options.toBundle());
     }
 }
