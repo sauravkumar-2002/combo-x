@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".individualchat">
+    tools:context=".individualchat"
+    android:background="#080429">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,11 +29,13 @@
         android:id="@+id/icusername"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textColor="@color/white"
         android:textSize="39dp"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/icrecview"/>
+        android:id="@+id/icrecview"
+        android:layout_marginTop="23dp"/>
 </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
