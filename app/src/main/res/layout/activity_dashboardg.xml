@@ -23,6 +23,7 @@
     <ImageView
         android:id="@+id/mainUserIMage"
         android:layout_width="78dp"
+        android:onClick="myprofile"
         android:layout_height="59dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

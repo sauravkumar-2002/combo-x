@@ -4,13 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".myprofile">
+    tools:context=".myprofile"
+    android:background="@drawable/signinbg">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:layout_marginRight="12dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="7dp"
+            android:text="Dark Mode"
+            android:textColor="@color/white"
+            android:id="@+id/mpdark"/>
+        <androidx.appcompat.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mpswitchdark"/>
+    </LinearLayout>
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="110dp"
-        android:layout_height="wrap_content"></LinearLayout>
+        android:layout_gravity="center"
+        android:layout_height="110dp"
+        android:id="@+id/mpprof"
+        android:src="@drawable/prof"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="39dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="right"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="12dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notification"
+            android:textColor="@color/white"
+            android:layout_marginRight="9dp"
+            android:id="@+id/mpnotification"/>
+        <androidx.appcompat.widget.SwitchCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mpswitchnotification"/>
+        <ImageView
+            android:layout_width="46dp"
+            android:layout_height="36dp"
+            android:layout_gravity="right"
+            android:layout_marginLeft="196dp"
+            android:src="@drawable/l2"
+            android:onClick="logout"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:text="Saved/Starred Messages"
+        android:textColor="@color/white"
+        android:textSize="23dp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/staaredmsgrecv"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text=" Your Groups"
+        android:layout_marginLeft="7dp"
+        android:textSize="23dp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/groupsrecv"/>
+
 </LinearLayout>
 </ScrollView>

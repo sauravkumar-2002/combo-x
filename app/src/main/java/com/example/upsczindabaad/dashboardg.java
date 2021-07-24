@@ -54,4 +54,9 @@ public class dashboardg extends AppCompatActivity {
 
 
     }
+
+    public void myprofile(View view) {
+        Intent intent1=new Intent(getApplicationContext(),myprofile.class);
+        startActivity(intent1);
+    }
 }
