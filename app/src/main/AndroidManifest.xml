@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UpscZindabaad">
-        <activity android:name=".dashboardg"></activity>
-
+        <activity android:name=".individualchat"></activity>
+        <activity android:name=".dashboardg" />
         <activity android:name=".signUpactivity" />
         <activity android:name=".loginActivityG">
             <intent-filter>
