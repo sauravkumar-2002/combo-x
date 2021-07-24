@@ -15,18 +15,22 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/chatPersonImage"
             android:layout_width="61dp"
             android:layout_height="63dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
+            android:transitionName="ChatpersonImage"
             android:src="@drawable/userimage" />
 
         <TextView
+            android:id="@+id/chatPersonName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="29dp"
             android:text="Derek Doyle"
+            android:transitionName="ChatpersonName"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />

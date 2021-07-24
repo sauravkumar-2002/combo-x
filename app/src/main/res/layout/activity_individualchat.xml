@@ -27,8 +27,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="username"
+        android:text="Deven Doyle"
         android:id="@+id/icusername"
+        android:textStyle="bold"
         android:layout_gravity="center"
         android:gravity="center"
         android:textColor="@color/white"
