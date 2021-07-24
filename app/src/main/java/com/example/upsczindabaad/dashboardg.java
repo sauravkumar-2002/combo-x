@@ -21,6 +21,8 @@ public class dashboardg extends AppCompatActivity {
     }
 
     public void startchat(View view) {
+        Intent intent1=new Intent(getApplicationContext(),individualchat.class);
+        startActivity(intent1);
 
     }
 
