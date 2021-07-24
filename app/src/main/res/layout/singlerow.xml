@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -16,20 +16,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:cardCornerRadius="19dp"
-        app:cardBackgroundColor="#E1D9F0"
+        app:cardBackgroundColor="#B2E1D9F0"
         android:layout_marginLeft="7dp"
-        android:layout_marginRight="7dp">
+        android:layout_marginRight="7dp"
+        >
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.064">
+            app:layout_constraintEnd_toEndOf="parent">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/singleprof"
@@ -39,9 +36,9 @@
 
             <TextView
                 android:id="@+id/singleusername"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="60dp"
-                android:layout_gravity="center"
+
                 android:layout_marginTop="13dp"
                 android:layout_marginBottom="10dp"
                 android:text="username"
