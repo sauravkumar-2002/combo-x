@@ -31,5 +31,8 @@ public class dashboardg extends AppCompatActivity {
 
 
     public void posts(View view) {
+
+        Intent intent=new Intent(getApplicationContext(),chtwnd.class);
+        startActivity(intent);
     }
 }
