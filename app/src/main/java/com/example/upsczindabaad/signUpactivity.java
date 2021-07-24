@@ -28,7 +28,7 @@ public class signUpactivity extends AppCompatActivity {
     EditText username,fullname,emailSg,passwordSg;
     ProgressBar progressBarS;
     private FirebaseAuth mAuth1;
-    savingdatamodel savingdatamodel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class signUpactivity extends AppCompatActivity {
     }
 
     public void signUp(View view) {
-        savedata();
+
         String emailtext = emailSg.getText().toString().trim();
         String passwordtext = passwordSg.getText().toString().trim();
 
@@ -106,23 +106,7 @@ public class signUpactivity extends AppCompatActivity {
 
     }
 
-    private void savedata() {
-        FirebaseUser useruid=FirebaseAuth.getInstance().getCurrentUser();
-        String uid1=useruid.getUid();
-        String username1=username.getText().toString().trim();
-        String fullname1=fullname.getText().toString().trim();
-        String email1=emailSg.getText().toString().trim();
-        String password1=passwordSg.getText().toString().trim();
-        FirebaseDatabase df=FirebaseDatabase.getInstance();
-        DatabaseReference reft=df.getReference(uid1);
-        savingdatamodel=new savingdatamodel();
-        savingdatamodel.setEmail1(email1);
-        savingdatamodel.setFullname1(fullname1);
-        savingdatamodel.setUsername1(username1);
-        savingdatamodel.setPassword1(password1);
-        reft.setValue(savingdatamodel);
 
-    }
 
 
     public void LogIN(View view) {
