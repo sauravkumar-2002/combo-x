@@ -24,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import es.dmoral.toasty.Toasty;
 
 public class signUpactivity extends AppCompatActivity {
-    public String usernamestring;
+     String usernamestring;
     EditText username,fullname,emailSg,passwordSg;
     ProgressBar progressBarS;
     private FirebaseAuth mAuth1;
@@ -104,6 +104,16 @@ public class signUpactivity extends AppCompatActivity {
         });
 
 
+
+
+
+
+       /* Intent myIntent = new Intent(view.getContext(),chtwnd.class);
+        myIntent.putExtra("name",usernamestring);
+        startActivity(myIntent);
+
+
+        */
     }
 
 

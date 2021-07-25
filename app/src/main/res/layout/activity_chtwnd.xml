@@ -70,24 +70,26 @@
             android:src="@drawable/emoji"/>
 
         <EditText
+            android:id="@+id/edtmsg"
             android:layout_width="0dp"
-            android:background="@drawable/chatedittext"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/chatedittext"
             android:hint="Enter Message..."
-            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
             android:paddingTop="6dp"
-            android:textColorHint="#74EDE4E4"
-            android:textSize="16sp"
+            android:paddingBottom="10dp"
             android:textColor="@color/white"
-            android:paddingLeft="10dp"/>
+            android:textColorHint="#74EDE4E4"
+            android:textSize="16sp" />
 
         <Button
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:background="@drawable/chatbutton"
             android:layout_marginLeft="10dp"
+            android:onClick="send"
             android:text="GO"
             />
 
