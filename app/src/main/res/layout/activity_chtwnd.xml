@@ -61,13 +61,15 @@
        >
 
         <ImageView
+            android:id="@+id/emojiImage"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="bottom"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
-            android:src="@drawable/emoji"/>
+            android:src="@drawable/emoji"
+            android:onClick="emoji"/>
 
         <EditText
             android:id="@+id/edtmsg"

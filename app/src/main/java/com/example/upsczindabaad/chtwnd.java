@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 public class chtwnd extends AppCompatActivity {
 
     TextView chatPersonName;
-    ImageView chatPersonImage;
+    ImageView chatPersonImage,emojiImage;
     EditText edtmsg;
     String chatPerson;
     String userNameForGrp;
@@ -37,12 +37,14 @@ public class chtwnd extends AppCompatActivity {
 
         chatPersonName = findViewById(R.id.chatPersonName);
         chatPersonImage = findViewById(R.id.chatPersonImage);
+        emojiImage=findViewById(R.id.emojiImage);
         edtmsg = findViewById(R.id.edtmsg);
         Intent intent = getIntent();
         chatPerson = intent.getStringExtra("name");
         int chatPersonImages = intent.getIntExtra("image", R.drawable.userimage);
         chatPersonName.setText(chatPerson);
         chatPersonImage.setImageResource(chatPersonImages);
+
 
     }
 
@@ -85,6 +87,11 @@ public class chtwnd extends AppCompatActivity {
 
             }
         });
+
+
+    }
+
+    public void emoji(View view) {
 
 
     }
