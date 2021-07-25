@@ -113,6 +113,7 @@ progressBar.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(getApplicationContext(), dashboardg.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
+                    finish();
 
                 } else {
                     progressBar.setVisibility(View.INVISIBLE);

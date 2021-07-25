@@ -1,48 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".individualchat"
-    android:background="#080429">
+    android:background="#080429"
+    tools:context=".individualchat">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="110dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="23dp"
-            android:layout_height="110dp"
-            android:id="@+id/icprofilepic"
-            android:src="@drawable/userimage"
-            android:transitionName="IndividualChatsImage"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Deven Doyle"
-        android:id="@+id/icusername"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="39dp"
-        android:transitionName="IndivualChatsText"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/icprofilepic"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="23dp"
+                android:src="@drawable/userimage"
+                android:transitionName="IndividualChatsImage" />
+
+            <TextView
+                android:id="@+id/icusername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Deven Doyle"
+                android:textColor="@color/white"
+                android:textSize="39dp"
+                android:textStyle="bold"
+                android:transitionName="IndivualChatsText" />
 
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/icrecview"
-        android:layout_marginTop="23dp"/>
-</LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/icrecview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp" />
+        </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,7 +37,7 @@ Context context;
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
         icmodel model=mlist.get(position);
         holder.tv.setText(model.getTv());
-        holder.iv.setImageResource(model.getImageUrl());
+        holder.iv.setImageResource(R.drawable.tokyo);
 
         holder.singleCardView.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -51,7 +51,7 @@ Context context;
                 pairs[1]=new Pair<View,String>(holder.iv,"ChatpersonImage");
 
                 intent.putExtra("name",model.getTv());
-                intent.putExtra("image",model.getImageUrl());
+                intent.putExtra("image",R.drawable.tokyo);
 
                 ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation((Activity) context,pairs);
                 context.startActivity(intent,options.toBundle());

@@ -1,85 +1,116 @@
 package com.example.upsczindabaad;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class individualchat extends AppCompatActivity {
-TextView icusername;
-ImageView icprofilepic;
-RecyclerView icrecv;
-ArrayList<icmodel> list;
+    TextView icusername;
+    ImageView icprofilepic;
+    RecyclerView icrecv;
+    userdatamodel umd2;
+    ArrayList<icmodel> list;
+    icadapter icadapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individualchat);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-        icusername=(TextView)findViewById(R.id.icusername);
-        icprofilepic=(ImageView)findViewById(R.id.icprofilepic);
-        icrecv=(RecyclerView)findViewById(R.id.icrecview);
+        icusername = (TextView) findViewById(R.id.icusername);
+        icprofilepic = (ImageView) findViewById(R.id.icprofilepic);
+        icrecv = (RecyclerView) findViewById(R.id.icrecview);
         icrecv.setLayoutManager(new LinearLayoutManager(this));
+        list = new ArrayList<>();
 
-        icadapter icadapter=new icadapter(givelist(),this);
+        icadapter = new icadapter(list, this);
         icrecv.setAdapter(icadapter);
+
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference ref = db.getReference("List of Users");
+        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        String uid=user.getUid();
+
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                list.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    userdatamodel umd3 = dataSnapshot.getValue(userdatamodel.class);
+                    if(umd3.getUid().equals(uid)){
+
+                        continue;
+                    }
+                    String individual_chat = umd3.getUsername();
+                    icmodel icm = new icmodel();
+                    icm.setTv(individual_chat);
+                    list.add(icm);
+                }
+                icadapter.notifyDataSetChanged();
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        setUserName();
     }
 
-    private ArrayList<icmodel> givelist() {
+    private void setUserName() {
 
-        list=new ArrayList<>();
-        icmodel md=new icmodel();
-        md.setTv("Tokyo");
-        md.setImageUrl(R.drawable.tokyo);
-        list.add(md);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        icmodel md1=new icmodel();
-        md1.setTv("Arturo");
-        md1.setImageUrl(R.drawable.arturo);
-        list.add(md1);
+        String uid = user.getUid();
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference ref = db.getReference("List of Users").child(uid);
 
-        icmodel md2=new icmodel();
-        md2.setTv("Denver");
-        md2.setImageUrl(R.drawable.denver);
-        list.add(md2);
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-        icmodel md3=new icmodel();
-        md3.setTv("Monica");
-        md3.setImageUrl(R.drawable.monica);
-        list.add(md3);
+                umd2 = new userdatamodel();
+                umd2 = snapshot.getValue(userdatamodel.class);
 
-        icmodel md4=new icmodel();
-        md4.setTv("Berlin");
-        md4.setImageUrl(R.drawable.berlin);
-        list.add(md4);
+                String username = umd2.getUsername();
 
-        icmodel md5=new icmodel();
-        md5.setTv("Moscow");
-        md5.setImageUrl(R.drawable.moscow);
-        list.add(md5);
 
-        icmodel md6=new icmodel();
-        md6.setTv("Proffesor");
-        md6.setImageUrl(R.drawable.proff);
-        list.add(md6);
+                icusername.setText(username);
 
-        icmodel md7=new icmodel();
-        md7.setTv("Rio");
-        md7.setImageUrl(R.drawable.rio);
-        list.add(md7);
 
-        icmodel md8=new icmodel();
-        md8.setTv("Raquel");
-        md8.setImageUrl(R.drawable.rqquel);
-        list.add(md8);
+            }
 
-        return  list;
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.upsczindabaad;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,9 +14,19 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class dashboardg extends AppCompatActivity {
 
     ImageView mainImage;
+    userdatamodel umd;
+    TextView helloMSg;
     TextView icText;
 
     @Override
@@ -26,7 +37,41 @@ public class dashboardg extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         mainImage=findViewById(R.id.mainUserIMage);
+        helloMSg=findViewById(R.id.hellomsg);
         icText=findViewById(R.id.individualChatText);
+
+        setCorrectHelloMsg();
+    }
+
+    private void setCorrectHelloMsg() {
+
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+
+        String uid=user.getUid();
+        FirebaseDatabase db=FirebaseDatabase.getInstance();
+        DatabaseReference ref=db.getReference("List of Users").child(uid);
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                 umd=new userdatamodel();
+                umd=snapshot.getValue(userdatamodel.class);
+
+                String username=umd.getUsername();
+
+                helloMSg.setText("Hello,\n"+username);
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 
     public void joinroom(View view) {
@@ -63,5 +108,6 @@ public class dashboardg extends AppCompatActivity {
 
         ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation(this,pairs);
         startActivity(intent1,options.toBundle());
+
     }
 }
