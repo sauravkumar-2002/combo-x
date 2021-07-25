@@ -85,6 +85,7 @@ public class signUpactivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
 
                     storeDataToFirebase();
+                    checkUserName();
 
                     progressBarS.setVisibility(View.INVISIBLE);
                     Toasty.success(getApplicationContext(), "Successfully registered", Toast.LENGTH_SHORT, true).show();
@@ -116,6 +117,13 @@ public class signUpactivity extends AppCompatActivity {
 
 
         */
+    }
+
+    private void checkUserName() {
+
+
+
+
     }
 
     private void storeDataToFirebase() {

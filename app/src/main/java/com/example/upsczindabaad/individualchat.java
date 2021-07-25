@@ -46,8 +46,8 @@ public class individualchat extends AppCompatActivity {
 
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference("List of Users");
-        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-        String uid=user.getUid();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
 
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -58,8 +58,7 @@ public class individualchat extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     userdatamodel umd3 = dataSnapshot.getValue(userdatamodel.class);
-                    if(umd3.getUid().equals(uid)){
-
+                    if (umd3.getUid().equals(uid)) {
                         continue;
                     }
                     String individual_chat = umd3.getUsername();

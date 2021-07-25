@@ -1,18 +1,18 @@
 package com.example.upsczindabaad;
 
 public class chatwndmodel {
-    String emailname, msg;
+    String uid, msg;
 
-    public String getEmailname() {
-        return emailname;
-    }
-
-    public void setEmailname(String emailname) {
-        this.emailname = emailname;
+    public String getUid() {
+        return uid;
     }
 
     public String getMsg() {
         return msg;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public void setMsg(String msg) {
