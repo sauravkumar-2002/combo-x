@@ -20,8 +20,8 @@
             android:layout_height="63dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:transitionName="ChatpersonImage"
-            android:src="@drawable/userimage" />
+            android:src="@drawable/userimage"
+            android:transitionName="ChatpersonImage" />
 
         <TextView
             android:id="@+id/chatPersonName"
@@ -30,10 +30,10 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="29dp"
             android:text="Derek Doyle"
-            android:transitionName="ChatpersonName"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:transitionName="ChatpersonName" />
 
 
     </LinearLayout>
@@ -46,6 +46,52 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp">
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+       >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/emoji"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:background="@drawable/chatedittext"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginBottom="10dp"
+            android:hint="Enter Message..."
+            android:paddingBottom="10dp"
+            android:paddingTop="6dp"
+            android:textColorHint="#74EDE4E4"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:paddingLeft="10dp"/>
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/chatbutton"
+            android:layout_marginLeft="10dp"
+            android:text="GO"
+            />
+
+
 
 
     </LinearLayout>
