@@ -22,7 +22,8 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.102" />
+        app:layout_constraintVertical_bias="0.102"
+        android:transitionName="topTextViewTransition"/>
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -92,7 +93,8 @@ android:layout_marginBottom="20dp"
                 android:layout_height="match_parent"
                 android:inputType="textEmailAddress"
                 android:textColor="#040D3E"
-                android:textColorHint="@color/black" />
+                android:textColorHint="@color/black"
+                android:transitionName="emailTransition"/>
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -113,7 +115,8 @@ android:layout_marginBottom="20dp"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"
                 android:textColor="#040D3E"
-                android:textColorHint="@color/black" />
+                android:textColorHint="@color/black"
+                android:transitionName="passwordTransition"/>
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -134,7 +137,8 @@ android:layout_marginBottom="20dp"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout1"
-        app:layout_constraintVertical_bias="0.309" />
+        app:layout_constraintVertical_bias="0.309"
+        android:transitionName="bttnTransition"/>
 
     <TextView
         android:id="@+id/textView21"
@@ -150,7 +154,8 @@ android:layout_marginBottom="20dp"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button1"
-        app:layout_constraintVertical_bias="0.24" />
+        app:layout_constraintVertical_bias="0.24"
+        android:transitionName="textviewTransition"/>
 
     <ProgressBar
         android:id="@+id/progressBarS"

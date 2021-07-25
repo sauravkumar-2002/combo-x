@@ -48,6 +48,7 @@ public class chtwnd extends AppCompatActivity {
 
     public void send(View view) {
 
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
 
@@ -76,6 +77,7 @@ public class chtwnd extends AppCompatActivity {
 
                 ref1.push().setValue(ch);
                 ref2.push().setValue(ch2);
+                edtmsg.setText("");
             }
 
             @Override
