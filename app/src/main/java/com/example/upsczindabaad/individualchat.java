@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class individualchat extends AppCompatActivity {
     TextView icusername;
-    ImageView icprofilepic;
+    ImageView icprofilepic,ie1;
     RecyclerView icrecv;
     userdatamodel umd2;
     ArrayList<icmodel> list;
@@ -69,6 +69,14 @@ public class individualchat extends AppCompatActivity {
                     String individual_chat = umd3.getUsername();
                     icmodel icm = new icmodel();
                     icm.setTv(individual_chat);
+                    String st=umd3.getPimage();
+
+                    if(st.equals("notuploaded")){
+                        icm.setImageUrl("https://firebasestorage.googleapis.com/v0/b/upsczindabaad-6d9bf.appspot.com/o/image%2Fprof.png?alt=media&token=6166f093-4a90-4dce-8034-539a9dce792f");
+                    }
+                    else{
+                        icm.setImageUrl(st);
+                    }
                     list.add(icm);
                 }
                 icadapter.notifyDataSetChanged();

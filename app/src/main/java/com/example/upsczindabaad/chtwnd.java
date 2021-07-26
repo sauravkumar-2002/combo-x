@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -63,9 +64,9 @@ public class chtwnd extends AppCompatActivity {
         edtmsg = findViewById(R.id.edtmsg);
         Intent intent = getIntent();
         chatPerson = intent.getStringExtra("name");
-        int chatPersonImages = intent.getIntExtra("image", R.drawable.userimage);
+        String imgurt=intent.getStringExtra("image");
         chatPersonName.setText(chatPerson);
-        chatPersonImage.setImageResource(chatPersonImages);
+      Glide.with(this).load(imgurt).into(chatPersonImage);
 
         list = new ArrayList<>();
         ic_adapter = new ic_adapter(list, this);

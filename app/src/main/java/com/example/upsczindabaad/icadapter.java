@@ -17,6 +17,9 @@ import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.util.ArrayList;
 
 public class icadapter extends RecyclerView.Adapter<icadapter.myviewholder> {
@@ -35,9 +38,13 @@ Context context;
 
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
-        icmodel model=mlist.get(position);
-        holder.tv.setText(model.getTv());
-        holder.iv.setImageResource(R.drawable.tokyo);
+
+        holder.tv.setText(mlist.get(position).getTv());
+      //  holder.iv.setImageResource(R.drawable.prof);
+
+       Glide.with(this.context)
+                .load(mlist.get(position).getImageUrl())
+                .into(holder.getImage());
 
         holder.singleCardView.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -50,8 +57,8 @@ Context context;
                 pairs[0]=new Pair<View,String>(holder.tv,"ChatpersonName");
                 pairs[1]=new Pair<View,String>(holder.iv,"ChatpersonImage");
 
-                intent.putExtra("name",model.getTv());
-                intent.putExtra("image",R.drawable.tokyo);
+                intent.putExtra("name",mlist.get(position).getTv());
+                intent.putExtra("image",mlist.get(position).getImageUrl());
 
                 ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation((Activity) context,pairs);
                 context.startActivity(intent,options.toBundle());
@@ -76,5 +83,7 @@ Context context;
             tv=itemView.findViewById(R.id.singleusername);
             singleCardView=itemView.findViewById(R.id.singleCard);
         }
+        public ImageView getImage(){ return this.iv;}
     }
+
 }

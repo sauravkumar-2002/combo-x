@@ -2,13 +2,13 @@ package com.example.upsczindabaad;
 
 public class icmodel {
 String tv;
-int imageUrl;
+String imageUrl;
 
-    public int getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(int imageUrl) {
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 

@@ -126,8 +126,10 @@ TextView txtusername,txtemail,txtfullname;
         ProgressDialog dialog = new ProgressDialog(this);
         dialog.setTitle("file uploader");
         dialog.show();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference uploader = storage.getReference().child("image/*");
+        StorageReference uploader = storage.getReference().child("image").child(uid);
         uploader.putFile(profileurl)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
