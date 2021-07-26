@@ -12,21 +12,120 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/editmpprof"
-        android:layout_width="110dp"
-        android:layout_marginTop="34dp"
-        android:onClick="profchange"
-        android:layout_height="110dp"
-        android:layout_gravity="center"
-        android:src="@drawable/userimage"
-        android:transitionName="myProfileImage" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/editmpprof"
+                android:layout_width="190dp"
+                android:layout_height="190dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="112dp"
+                android:layout_marginLeft="112dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="109dp"
+                android:layout_marginRight="109dp"
+                android:onClick="profchange"
+                android:src="@drawable/userimage"
+                android:transitionName="myProfileImage" />
+
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="45dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="83dp"
+                android:layout_marginRight="83dp"
+                android:layout_marginBottom="33dp"
+                android:src="@drawable/pencil" />
+        </RelativeLayout>
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="YOUR DETAILS"
+    android:textColor="@color/white"
+    android:textSize="32dp"
+    android:layout_marginTop="43dp"
+    android:layout_marginLeft="7dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="27dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Username:"
+
+    android:textColor="@color/white"
+   android:layout_marginLeft="12dp"
+    android:textSize="23dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edtusername1"
+                android:layout_marginLeft="23dp"
+                android:textSize="20dp"
+                android:textColor="#74FFFFFF"
+                android:text="xxxxxx"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="27dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Full Name: "
+                android:textColor="@color/white"
+                android:layout_marginLeft="12dp"
+                android:textSize="23dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edtfullname1"
+                android:layout_marginLeft="23dp"
+                android:textSize="20dp"
+                android:textColor="#74FFFFFF"
+                android:text="xxxxxx"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="27dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email id:    "
+                android:textColor="@color/white"
+                android:layout_marginLeft="12dp"
+                android:textSize="23dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/edtemail1"
+                android:layout_marginLeft="23dp"
+                android:textSize="20dp"
+                android:textColor="#74FFFFFF"
+                android:text="xxxxxx"/>
+        </LinearLayout>
 
         <Button
+            android:layout_marginTop="57dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:text="update"
+            android:background="@drawable/bttn_background"
             android:onClick="uploaddone"/>
     </LinearLayout>
 </ScrollView>

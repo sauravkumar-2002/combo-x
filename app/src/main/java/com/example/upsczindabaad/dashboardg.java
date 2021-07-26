@@ -21,14 +21,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import es.dmoral.toasty.Toasty;
 
 public class dashboardg extends AppCompatActivity {
 
     ImageView mainImage;
-    userdatamodel umd;
+    userdatamodel umd, profimage;
     TextView helloMSg;
     TextView icText;
-
+String uid,link;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +43,38 @@ public class dashboardg extends AppCompatActivity {
         helloMSg=findViewById(R.id.hellomsg);
         icText=findViewById(R.id.individualChatText);
 
+
+        setprofileimage();
         setCorrectHelloMsg();
     }
+    private void setprofileimage() {
+        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
 
+        uid=user.getUid();
+        FirebaseDatabase db1=FirebaseDatabase.getInstance();
+        DatabaseReference ref2=db1.getReference("List of Users").child(uid);
+        ref2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                profimage = snapshot.getValue(userdatamodel.class);
+                link = profimage.pimage;
+                if (link.equals("notuploaded")) {
+                    mainImage.setImageResource(R.drawable.prof);
+                    // Toasty.success(getApplicationContext(), "Default image has been setted").show();
+                } else {
+                    Picasso.with(dashboardg.this)
+                            .load(link)
+                            .into(mainImage);
+                    //Toasty.success(getApplicationContext(), "Updated").show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     private void setCorrectHelloMsg() {
 
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
