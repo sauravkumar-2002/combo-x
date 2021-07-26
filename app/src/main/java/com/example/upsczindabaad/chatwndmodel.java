@@ -1,7 +1,15 @@
 package com.example.upsczindabaad;
 
 public class chatwndmodel {
-    String uid, msg;
+    String uid, msg,sendername;
+
+    public String getSendername() {
+        return sendername;
+    }
+
+    public void setSendername(String sendername) {
+        this.sendername = sendername;
+    }
 
     public String getUid() {
         return uid;
