@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -101,9 +102,17 @@ public class individualchat extends AppCompatActivity {
 
                 umd2 = new userdatamodel();
                 umd2 = snapshot.getValue(userdatamodel.class);
-
+                String userimage=umd2.getPimage();
                 String username = umd2.getUsername();
-
+                if (userimage.equals("notuploaded")) {
+                    icprofilepic.setImageResource(R.drawable.prof);
+                    // Toasty.success(getApplicationContext(), "Default image has been setted").show();
+                } else {
+                    Picasso.with(individualchat.this)
+                            .load(userimage)
+                            .into(icprofilepic);
+                    //Toasty.success(getApplicationContext(), "Updated").show();
+                }
 
                 icusername.setText(username);
 
