@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -62,7 +63,7 @@ String uid,link;
                     mainImage.setImageResource(R.drawable.prof);
                     // Toasty.success(getApplicationContext(), "Default image has been setted").show();
                 } else {
-                    Picasso.with(dashboardg.this)
+                    Glide.with(dashboardg.this)
                             .load(link)
                             .into(mainImage);
                     //Toasty.success(getApplicationContext(), "Updated").show();

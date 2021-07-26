@@ -22,6 +22,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="23dp"
                 android:src="@drawable/userimage"
+                android:onClick="ictomyprofile"
                 android:transitionName="IndividualChatsImage" />
 
             <TextView
@@ -30,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:onClick="ictomyprofile"
                 android:text="Deven Doyle"
                 android:textColor="@color/white"
                 android:textSize="39dp"

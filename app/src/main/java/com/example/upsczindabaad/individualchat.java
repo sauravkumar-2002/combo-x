@@ -1,6 +1,7 @@
 package com.example.upsczindabaad;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -116,7 +118,7 @@ public class individualchat extends AppCompatActivity {
                     icprofilepic.setImageResource(R.drawable.prof);
                     // Toasty.success(getApplicationContext(), "Default image has been setted").show();
                 } else {
-                    Picasso.with(individualchat.this)
+                    Glide.with(individualchat.this)
                             .load(userimage)
                             .into(icprofilepic);
                     //Toasty.success(getApplicationContext(), "Updated").show();
@@ -133,6 +135,12 @@ public class individualchat extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public void ictomyprofile(View view) {
+        Intent intent= new Intent(getApplicationContext(),myprofile.class);
+        startActivity(intent);
 
     }
 }

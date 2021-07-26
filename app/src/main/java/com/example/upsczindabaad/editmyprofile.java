@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -181,7 +182,7 @@ TextView txtusername,txtemail,txtfullname;
                     // Toasty.success(getApplicationContext(), "Default image has been setted").show();
                 }
                 else {
-                    Picasso.with(editmyprofile.this)
+                    Glide.with(editmyprofile.this)
                             .load(link)
                             .into(editprofpic);
 
