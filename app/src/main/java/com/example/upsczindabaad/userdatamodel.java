@@ -2,7 +2,7 @@ package com.example.upsczindabaad;
 
 public class userdatamodel {
 
-    String Email,Password,uid,fullname,username;
+    String Email,Password,uid,fullname,username,pimage;
 
     public String getEmail() {
         return Email;
@@ -42,5 +42,13 @@ public class userdatamodel {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPimage() {
+        return pimage;
+    }
+
+    public void setPimage(String pimage) {
+        this.pimage = pimage;
     }
 }

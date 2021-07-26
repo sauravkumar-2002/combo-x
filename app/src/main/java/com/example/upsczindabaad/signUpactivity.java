@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import es.dmoral.toasty.Toasty;
 
 public class signUpactivity extends AppCompatActivity {
-    String usernamestring;
+    String usernamestring,userpimage;
     EditText username, fullname, emailSg, passwordSg;
     ProgressBar progressBarS;
     private FirebaseAuth mAuth1;
@@ -137,7 +137,7 @@ public class signUpactivity extends AppCompatActivity {
         String pass=passwordSg.getText().toString();
         String fullname1=fullname.getText().toString().trim();
         String userNm=username.getText().toString().trim();
-
+         userpimage="notuploaded";
 
         userdatamodel um=new userdatamodel();
         um.setEmail(email);
@@ -145,7 +145,7 @@ public class signUpactivity extends AppCompatActivity {
         um.setPassword(pass);
         um.setUid(uid);
         um.setUsername(userNm);
-
+        um.setPimage(userpimage);
         ref.child(uid).setValue(um);
 
 

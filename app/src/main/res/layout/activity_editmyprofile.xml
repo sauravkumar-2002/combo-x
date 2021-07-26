@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/signinbg"
+    tools:context=".editmyprofile">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/editmpprof"
+        android:layout_width="110dp"
+        android:layout_marginTop="34dp"
+        android:onClick="profchange"
+        android:layout_height="110dp"
+        android:layout_gravity="center"
+        android:src="@drawable/userimage"
+        android:transitionName="myProfileImage" />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="uploaddone"/>
+    </LinearLayout>
+</ScrollView>

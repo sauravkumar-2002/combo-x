@@ -1,7 +1,9 @@
 package com.example.upsczindabaad;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -17,13 +19,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 public class myprofile extends AppCompatActivity {
 
 
     TextView profilefullname, profileusername;
     userdatamodel umd1;
-
+    Uri profilepicurl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,5 +90,10 @@ public class myprofile extends AppCompatActivity {
         finish();
 
 
+    }
+
+    public void profchange(View view) {
+        Intent intent=new Intent(getApplicationContext(),editmyprofile.class);
+        startActivity(intent);
     }
 }
