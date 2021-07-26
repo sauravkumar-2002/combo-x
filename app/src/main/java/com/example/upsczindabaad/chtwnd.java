@@ -50,7 +50,16 @@ public class chtwnd extends AppCompatActivity {
         chatPersonImage = findViewById(R.id.chatPersonImage);
         emojiImage = findViewById(R.id.emojiImage);
         chatrecv = findViewById(R.id.chatrecv);
-        chatrecv.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+
+        boolean reverseLayout = false; // Or false if your data is already reversed
+        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, reverseLayout);
+        manager.setStackFromEnd(true);
+        chatrecv.setLayoutManager(manager);
+
+        //chatrecv.setLayoutManager(new LinearLayoutManager(this));
         edtmsg = findViewById(R.id.edtmsg);
         Intent intent = getIntent();
         chatPerson = intent.getStringExtra("name");
@@ -62,6 +71,49 @@ public class chtwnd extends AppCompatActivity {
         ic_adapter = new ic_adapter(list, this);
         chatrecv.setAdapter(ic_adapter);
         chatrecv.hasFixedSize();
+        FirebaseUser user1=FirebaseAuth.getInstance().getCurrentUser();
+        String myuser=user1.getUid();
+        DatabaseReference reference=FirebaseDatabase.getInstance().getReference("List of Users").child(myuser);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userdatamodel userdatamodel1=snapshot.getValue(userdatamodel.class);
+                String myusername=userdatamodel1.getUsername();
+                String groupname=myusername+chatPerson;
+                DatabaseReference refacces=FirebaseDatabase.getInstance().getReference("private chats").child(groupname);
+                refacces.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        list.clear();
+                        for(DataSnapshot s:snapshot.getChildren()){
+                            chatwndmodel chatmodel=s.getValue(chatwndmodel.class);
+                            String sendername=chatmodel.getSendername();
+                            String msgsend=chatmodel.getMsg();
+
+                            ic_model1 modelrec=new ic_model1();
+                            modelrec.setName(sendername);
+                            modelrec.setMsg(msgsend);
+                            list.add(modelrec);
+
+
+
+                        }
+                        ic_adapter.notifyDataSetChanged();
+                        chatrecv.smoothScrollToPosition(chatrecv.getAdapter().getItemCount());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 
