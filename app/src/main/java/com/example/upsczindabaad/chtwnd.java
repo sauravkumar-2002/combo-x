@@ -90,8 +90,17 @@ public class chtwnd extends AppCompatActivity {
                             String sendername=chatmodel.getSendername();
                             String msgsend=chatmodel.getMsg();
 
+
+
                             ic_model1 modelrec=new ic_model1();
-                            modelrec.setName(sendername);
+                            if(sendername.equals(myusername)){
+                                modelrec.setViewtype(0);
+
+                            }
+                            else{
+                                modelrec.setViewtype(1);
+                            }
+                           // modelrec.setName(sendername);
                             modelrec.setMsg(msgsend);
                             list.add(modelrec);
 
