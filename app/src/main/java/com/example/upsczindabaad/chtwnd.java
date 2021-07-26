@@ -24,6 +24,8 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
+import es.dmoral.toasty.Toasty;
+
 public class chtwnd extends AppCompatActivity {
 
     TextView chatPersonName;
@@ -58,12 +60,16 @@ public class chtwnd extends AppCompatActivity {
         list=new ArrayList<>();
         ic_adapter=new ic_adapter(list,this);
         chatrecv.setAdapter(ic_adapter);
+        retrievedataforrecyclerview();
+        Toasty.error(getApplicationContext(),"oncreate").show();
 
     }
 
     public void send(View view) {
-
-
+    if(edtmsg.getText().toString().trim().isEmpty()){
+        Toasty.error(getApplicationContext(),"enter message").show();
+    }
+      else {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
 
@@ -95,8 +101,7 @@ public class chtwnd extends AppCompatActivity {
                 edtmsg.setText("");
 
 
-
-                retrievedataforrecyclerview();
+                //retrievedataforrecyclerview();
 
 
             }
@@ -106,7 +111,7 @@ public class chtwnd extends AppCompatActivity {
 
             }
         });
-
+    }
 
     }
 
