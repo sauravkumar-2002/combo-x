@@ -108,6 +108,13 @@ String uid,link;
     }
 
     public void joinroom(View view) {
+
+        bottomFragmentJoin bottomFragmentJoin=new bottomFragmentJoin();
+        bottomFragmentJoin.show(getSupportFragmentManager(),bottomFragmentJoin.getTag());
+
+
+
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -124,6 +131,10 @@ String uid,link;
     }
 
     public void createroom(View view) {
+        fragmentForcreate fragmentForcreate=new fragmentForcreate();
+        fragmentForcreate.show(getSupportFragmentManager(),fragmentForcreate.getTag());
+
+
     }
 
 
