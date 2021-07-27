@@ -1,7 +1,6 @@
 package com.example.upsczindabaad;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,17 +8,15 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
+import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 
 import java.util.Random;
 
@@ -93,15 +90,16 @@ public class fragmentForcreate extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
 
-
+                if (groupname.getText().toString().trim().isEmpty()) {
+                    groupname.setError("Group name can't be empty");
+                    groupname.requestFocus();
+                    return;
+                }
 
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String uid = user.getUid();
                 String invitecode = getrandomstring(s);
                 String edtgrup = groupname.getText().toString().trim();
-
-
-
 
 
                 DatabaseReference refw = FirebaseDatabase.getInstance().getReference("grup").child(invitecode);
@@ -114,7 +112,56 @@ public class fragmentForcreate extends BottomSheetDialogFragment {
                 modelgrupdetails.setGruppic("notuploadeimg");
                 refw.child("groupdetails").setValue(modelgrupdetails);
 
-                dismiss();
+                // dismiss();
+
+
+                new FancyGifDialog.Builder(getContext())
+                        .setTitle("Your Group invite code is :" + invitecode)
+                        .setMessage("Group Successfully created.\n Share this invite code with your friends to add them in this group :)")
+                        .setTitleTextColor(R.color.successColor)
+
+                        .setDescriptionTextColor(R.color.normalColor)
+
+                        .setNegativeBtnText("Cancel")
+                        .setPositiveBtnBackground(R.color.successColor)
+                        .setPositiveBtnText("Share")
+                        .setNegativeBtnBackground(R.color.warningColor)
+                        .setGifResource(R.drawable.success)
+                        .isCancellable(false)
+                        .OnPositiveClicked(new FancyGifDialogListener() {
+                            @Override
+                            public void OnClick() {
+
+                                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                                sharingIntent.setType("text/plain");
+                                String shareBody = "To Join group use " + invitecode;
+                                String shareSubject = "Invite code to Join Group";
+
+                                sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, shareSubject);
+
+                                startActivity(Intent.createChooser(sharingIntent, "Share Using..."));
+
+
+                            }
+                        })
+                        .OnNegativeClicked(new FancyGifDialogListener() {
+                            @Override
+                            public void OnClick() {
+                                dismiss();
+                            }
+                        })
+                        .build();
+
+
+
+
+
+
+
+
+
+                /*
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Successfully Created!!")
                         .setMessage("Referal Code is '" + invitecode + "'")
@@ -134,6 +181,8 @@ public class fragmentForcreate extends BottomSheetDialogFragment {
                         });
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
+                */
+
             }
         });
         return v;
