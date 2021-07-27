@@ -88,7 +88,7 @@ public class bottomFragmentJoin extends BottomSheetDialogFragment {
        joinGrp.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               String invite=invitecode.getText().toString().trim();
+               String invitecode1=invitecode.getText().toString().trim();
 
                DatabaseReference reference= FirebaseDatabase.getInstance().getReference("totalgroup");
                reference.addValueEventListener(new ValueEventListener() {
@@ -98,7 +98,7 @@ public class bottomFragmentJoin extends BottomSheetDialogFragment {
                             modeltotalgroup modeltotalgroup=s.getValue(com.example.upsczindabaad.modeltotalgroup.class);
                          s1=modeltotalgroup.getInvitecode();
 
-                           if(s1.equals(invite)){
+                           if(s1.equals(invitecode1)){
                                ans=1;
                                break;
                            }
@@ -108,6 +108,18 @@ public class bottomFragmentJoin extends BottomSheetDialogFragment {
                        if(ans==1){
                            Toasty.success(getActivity(),"joined").show();
                            dismiss();
+                           FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+                           String uidf=user.getUid();
+                           if(uidf.equals("null")){
+
+                           }
+                           else{
+                               DatabaseReference red=FirebaseDatabase.getInstance().getReference("grup").child(invitecode1);
+                               modelgrupparticipants modelgrupparticipants=new modelgrupparticipants();
+                               modelgrupparticipants.setUid(uidf);
+                               red.child("members").child(uidf).setValue(modelgrupparticipants);
+                           }
+
                        }
                        else {
                            Toasty.error(getActivity(),"Enter Correct Invite Code").show();

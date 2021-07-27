@@ -107,7 +107,7 @@ public class fragmentForcreate extends BottomSheetDialogFragment {
 
                 modelgrupparticipants modelgroup = new modelgrupparticipants();
                 modelgroup.setUid(uid);
-                refw.child("members").setValue(modelgroup);
+                refw.child("members").child(uid).setValue(modelgroup);
                 modelgrupdetails modelgrupdetails = new modelgrupdetails();
                 modelgrupdetails.setGroupname(edtgrup);
                 modelgrupdetails.setGruppic("notuploadeimg");
