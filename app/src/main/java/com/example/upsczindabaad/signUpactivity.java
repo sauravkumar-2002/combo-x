@@ -2,6 +2,7 @@ package com.example.upsczindabaad;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -17,16 +18,21 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import es.dmoral.toasty.Toasty;
 
 public class signUpactivity extends AppCompatActivity {
-    String usernamestring,userpimage;
+    String usernamestring, userpimage;
     EditText username, fullname, emailSg, passwordSg;
     ProgressBar progressBarS;
     private FirebaseAuth mAuth1;
+    int ans=1;
 
 
     @Override
@@ -46,47 +52,49 @@ public class signUpactivity extends AppCompatActivity {
 
     public void signUp(View view) {
 
+
         String emailtext = emailSg.getText().toString().trim();
         String passwordtext = passwordSg.getText().toString().trim();
 
         // ALL THE VALIDATIONS-----
         usernamestring = username.getText().toString().trim();
-        int check=usernamestring.indexOf('.');
-        if(check!=-1){
+
+        int check = usernamestring.indexOf('.');
+        if (check != -1) {
             this.username.setError("Invalid Format(.)");
             this.username.requestFocus();
             return;
         }
 
-        int check1=usernamestring.indexOf('$');
-        if(check1!=-1){
+        int check1 = usernamestring.indexOf('$');
+        if (check1 != -1) {
             this.username.setError("Invalid Format($)");
             this.username.requestFocus();
             return;
         }
 
-        int check2=usernamestring.indexOf('[');
-        if(check2!=-1){
+        int check2 = usernamestring.indexOf('[');
+        if (check2 != -1) {
             this.username.setError("Invalid Format([)");
             this.username.requestFocus();
             return;
         }
 
-        int check3=usernamestring.indexOf(']');
-        if(check3!=-1){
+        int check3 = usernamestring.indexOf(']');
+        if (check3 != -1) {
             this.username.setError("Invalid Format(])");
             this.username.requestFocus();
             return;
         }
 
-        int check4=usernamestring.indexOf('#');
-        if(check4!=-1){
+        int check4 = usernamestring.indexOf('#');
+        if (check4 != -1) {
             this.username.setError("Invalid Format(#)");
             this.username.requestFocus();
             return;
         }
-        int check5=usernamestring.indexOf('/');
-        if(check5!=-1){
+        int check5 = usernamestring.indexOf('/');
+        if (check5 != -1) {
             this.username.setError("Invalid Format(/)");
             this.username.requestFocus();
             return;
@@ -115,37 +123,95 @@ public class signUpactivity extends AppCompatActivity {
         }
 
 
-        //USERNAME VALIADTIONS---
-        progressBarS.setVisibility(View.VISIBLE);
 
 
-        mAuth1.createUserWithEmailAndPassword(emailtext, passwordtext).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+        DatabaseReference reference=FirebaseDatabase.getInstance().getReference("List of Users");
 
-                if (task.isSuccessful()) {
+reference.addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onDataChange(@NonNull DataSnapshot snapshot) {
+        ans=1;
+        for(DataSnapshot s:snapshot.getChildren()){
+          userdatamodel userdatamodel=s.getValue(com.example.upsczindabaad.userdatamodel.class);
 
-                    storeDataToFirebase();
-                    checkUserName();
-
-                    progressBarS.setVisibility(View.INVISIBLE);
-                    Toasty.success(getApplicationContext(), "Successfully registered", Toast.LENGTH_SHORT, true).show();
-                    Intent intent = new Intent(getApplicationContext(), dashboardg.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+          if(userdatamodel.getUsername().equals(usernamestring)){
+             ans=0;
+              break;
+          }
 
 
-                } else {
-                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+        }
+
+        if(ans==1){
+
+            progressBarS.setVisibility(View.VISIBLE);
+
+
+            mAuth1.createUserWithEmailAndPassword(emailtext, passwordtext).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+
+                    if (task.isSuccessful()) {
+
+                        storeDataToFirebase();
+                        checkUserName();
+
                         progressBarS.setVisibility(View.INVISIBLE);
-                        Toasty.info(getApplicationContext(), "You are already registered!!!").show();
+                        Toasty.success(getApplicationContext(), "Successfully registered", Toast.LENGTH_SHORT, true).show();
+                        Intent intent = new Intent(getApplicationContext(), dashboardg.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+
+
                     } else {
-                        progressBarS.setVisibility(View.INVISIBLE);
-                        Toasty.error(getApplicationContext(), task.getException().getMessage()).show();
+                        if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                            progressBarS.setVisibility(View.INVISIBLE);
+                            Toasty.info(getApplicationContext(), "You are already registered!!!").show();
+                        } else {
+                            progressBarS.setVisibility(View.INVISIBLE);
+                            Toasty.error(getApplicationContext(), task.getException().getMessage()).show();
+                        }
                     }
                 }
-            }
-        });
+            });
+
+
+
+
+        }
+        else{
+            Toasty.error(getApplicationContext(),"Username already exists").show();
+        }
+
+
+
+
+
+
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError error) {
+
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //USERNAME VALIADTIONS---
 
 
 
@@ -163,24 +229,22 @@ public class signUpactivity extends AppCompatActivity {
     private void checkUserName() {
 
 
-
-
     }
 
     private void storeDataToFirebase() {
-        FirebaseDatabase db=FirebaseDatabase.getInstance();
-        DatabaseReference ref=db.getReference("List of Users");
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference ref = db.getReference("List of Users");
 
-        FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        String uid=user.getUid();
-        String email=emailSg.getText().toString().trim();
-        String pass=passwordSg.getText().toString();
-        String fullname1=fullname.getText().toString().trim();
-        String userNm=username.getText().toString().trim();
-         userpimage="notuploaded";
+        String uid = user.getUid();
+        String email = emailSg.getText().toString().trim();
+        String pass = passwordSg.getText().toString();
+        String fullname1 = fullname.getText().toString().trim();
+        String userNm = username.getText().toString().trim();
+        userpimage = "notuploaded";
 
-        userdatamodel um=new userdatamodel();
+        userdatamodel um = new userdatamodel();
         um.setEmail(email);
         um.setFullname(fullname1);
         um.setPassword(pass);
@@ -188,8 +252,6 @@ public class signUpactivity extends AppCompatActivity {
         um.setUsername(userNm);
         um.setPimage(userpimage);
         ref.child(uid).setValue(um);
-
-
 
 
     }
