@@ -51,6 +51,47 @@ public class signUpactivity extends AppCompatActivity {
 
         // ALL THE VALIDATIONS-----
         usernamestring = username.getText().toString().trim();
+        int check=usernamestring.indexOf('.');
+        if(check!=-1){
+            this.username.setError("Invalid Format(.)");
+            this.username.requestFocus();
+            return;
+        }
+
+        int check1=usernamestring.indexOf('$');
+        if(check1!=-1){
+            this.username.setError("Invalid Format($)");
+            this.username.requestFocus();
+            return;
+        }
+
+        int check2=usernamestring.indexOf('[');
+        if(check2!=-1){
+            this.username.setError("Invalid Format([)");
+            this.username.requestFocus();
+            return;
+        }
+
+        int check3=usernamestring.indexOf(']');
+        if(check3!=-1){
+            this.username.setError("Invalid Format(])");
+            this.username.requestFocus();
+            return;
+        }
+
+        int check4=usernamestring.indexOf('#');
+        if(check4!=-1){
+            this.username.setError("Invalid Format(#)");
+            this.username.requestFocus();
+            return;
+        }
+        int check5=usernamestring.indexOf('/');
+        if(check5!=-1){
+            this.username.setError("Invalid Format(/)");
+            this.username.requestFocus();
+            return;
+        }
+
 
         //EMAIL VALIDATIONS--
         if (emailtext.isEmpty()) {
