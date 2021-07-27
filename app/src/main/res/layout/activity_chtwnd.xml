@@ -6,110 +6,112 @@
     android:layout_height="match_parent"
     android:background="#080429"
     tools:context=".chtwnd">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#030111"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/chatPersonImage"
-            android:layout_width="61dp"
-            android:layout_height="63dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/userimage"
-            android:transitionName="ChatpersonImage" />
-
-        <TextView
-            android:id="@+id/chatPersonName"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="29dp"
-            android:text="Derek Doyle"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:transitionName="ChatpersonName" />
+            android:background="#030111"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/chatPersonImage"
+                android:layout_width="61dp"
+                android:layout_height="63dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/userimage"
+                android:transitionName="ChatpersonImage" />
+
+            <TextView
+                android:id="@+id/chatPersonName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="29dp"
+                android:text="Derek Doyle"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:transitionName="ChatpersonName" />
 
 
-    </LinearLayout>
+        </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#030111"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#030111"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="0dp">
 
 
-    </LinearLayout>
-<androidx.recyclerview.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    android:id="@+id/chatrecv"
-    android:layout_marginTop="10dp"
-    android:layout_marginLeft="7dp"
-    android:layout_marginRight="7dp"
-    android:layout_marginBottom="10dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="76dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-       >
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/emojiImage"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/emoji"
-            android:onClick="emoji"/>
-
-        <EditText
-            android:id="@+id/edtmsg"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatrecv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="7dp"
             android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/chatedittext"
-            android:hint="Enter Message..."
-            android:paddingLeft="10dp"
-            android:paddingTop="6dp"
-            android:paddingBottom="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="#74EDE4E4"
-            android:textSize="16sp" />
+            android:layout_weight="1" />
 
-        <Button
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/chatbutton"
-            android:layout_marginLeft="10dp"
-            android:onClick="send"
-            android:text="GO"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/emojiImage"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="20dp"
+                android:onClick="emoji"
+                android:src="@drawable/emoji" />
+
+            <EditText
 
 
+                android:id="@+id/edtmsg"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/chatedittext"
+                android:hint="Enter Message..."
+                android:paddingLeft="10dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/white"
+                android:textColorHint="#74EDE4E4"
+                android:textSize="16sp" />
 
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/chatbutton"
+                android:onClick="send"
+                android:text="GO" />
+
+
+        </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

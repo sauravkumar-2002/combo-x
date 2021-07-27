@@ -65,6 +65,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:id="@+id/inviteCode"
                 android:layout_height="match_parent"
                 android:background="#E1C7C7"
                 android:inputType="textShortMessage"
@@ -85,6 +86,7 @@
             android:layout_marginBottom="40dp"
             android:background="@drawable/chatbutton"
             android:text="Join Group"
+            android:id="@+id/joinGrp"
             android:textColor="@color/white"
             android:textStyle="bold"
             />

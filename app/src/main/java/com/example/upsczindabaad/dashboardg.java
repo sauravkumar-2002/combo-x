@@ -63,7 +63,7 @@ String uid,link;
                     mainImage.setImageResource(R.drawable.prof);
                     // Toasty.success(getApplicationContext(), "Default image has been setted").show();
                 } else {
-                    Glide.with(dashboardg.this)
+                    Glide.with(getApplicationContext())
                             .load(link)
                             .into(mainImage);
                     //Toasty.success(getApplicationContext(), "Updated").show();

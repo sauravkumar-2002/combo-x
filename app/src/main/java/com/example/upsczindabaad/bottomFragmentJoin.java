@@ -7,8 +7,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +22,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
  * create an instance of this fragment.
  */
 public class bottomFragmentJoin extends BottomSheetDialogFragment {
+
+    EditText invitecode;
+    Button joinGrp;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,12 +64,36 @@ public class bottomFragmentJoin extends BottomSheetDialogFragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bottom_join, container, false);
+       View v=inflater.inflate(R.layout.fragment_bottom_join,container,false);
+       joinGrp=v.findViewById(R.id.joinGrp);
+       invitecode=v.findViewById(R.id.inviteCode);
+
+       joinGrp.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               String invite=invitecode.getText().toString().trim();
+
+               DatabaseReference reference= FirebaseDatabase.getInstance().getReference("groups").child(invite);
+
+               FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+               String uid=user.getUid();
+               reference.push().setValue(uid);
+
+           }
+       });
+        return  v;
+
+
+
+
     }
 }

@@ -22,7 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import es.dmoral.toasty.Toasty;
 
@@ -53,8 +55,6 @@ public class chtwnd extends AppCompatActivity {
         chatrecv = findViewById(R.id.chatrecv);
 
 
-
-
         boolean reverseLayout = false; // Or false if your data is already reversed
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, reverseLayout);
         manager.setStackFromEnd(true);
@@ -64,47 +64,44 @@ public class chtwnd extends AppCompatActivity {
         edtmsg = findViewById(R.id.edtmsg);
         Intent intent = getIntent();
         chatPerson = intent.getStringExtra("name");
-        String imgurt=intent.getStringExtra("image");
+        String imgurt = intent.getStringExtra("image");
         chatPersonName.setText(chatPerson);
-      Glide.with(this).load(imgurt).into(chatPersonImage);
+        Glide.with(this).load(imgurt).into(chatPersonImage);
 
         list = new ArrayList<>();
         ic_adapter = new ic_adapter(list, this);
         chatrecv.setAdapter(ic_adapter);
         chatrecv.hasFixedSize();
-        FirebaseUser user1=FirebaseAuth.getInstance().getCurrentUser();
-        String myuser=user1.getUid();
-        DatabaseReference reference=FirebaseDatabase.getInstance().getReference("List of Users").child(myuser);
+        FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
+        String myuser = user1.getUid();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("List of Users").child(myuser);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                userdatamodel userdatamodel1=snapshot.getValue(userdatamodel.class);
-                String myusername=userdatamodel1.getUsername();
-                String groupname=myusername+chatPerson;
-                DatabaseReference refacces=FirebaseDatabase.getInstance().getReference("private chats").child(groupname);
+                userdatamodel userdatamodel1 = snapshot.getValue(userdatamodel.class);
+                String myusername = userdatamodel1.getUsername();
+                String groupname = myusername + chatPerson;
+                DatabaseReference refacces = FirebaseDatabase.getInstance().getReference("private chats").child(groupname);
                 refacces.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         list.clear();
-                        for(DataSnapshot s:snapshot.getChildren()){
-                            chatwndmodel chatmodel=s.getValue(chatwndmodel.class);
-                            String sendername=chatmodel.getSendername();
-                            String msgsend=chatmodel.getMsg();
+                        for (DataSnapshot s : snapshot.getChildren()) {
+                            chatwndmodel chatmodel = s.getValue(chatwndmodel.class);
+                            String sendername = chatmodel.getSendername();
+                            String msgsend = chatmodel.getMsg();
 
 
-
-                            ic_model1 modelrec=new ic_model1();
-                            if(sendername.equals(myusername)){
+                            ic_model1 modelrec = new ic_model1();
+                            if (sendername.equals(myusername)) {
                                 modelrec.setViewtype(0);
 
-                            }
-                            else{
+                            } else {
                                 modelrec.setViewtype(1);
                             }
-                           // modelrec.setName(sendername);
+                            // modelrec.setName(sendername);
                             modelrec.setMsg(msgsend);
                             list.add(modelrec);
-
 
 
                         }
@@ -125,7 +122,9 @@ public class chtwnd extends AppCompatActivity {
             }
         });
 
+
     }
+
 
     public void send(View view) {
         if (edtmsg.getText().toString().trim().isEmpty()) {
@@ -179,5 +178,28 @@ public class chtwnd extends AppCompatActivity {
     public void emoji(View view) {
 
 
+    }
+
+
+    public void chatting(View view) {
+
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User Status").child(uid);
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String date = simpleDateFormat.format(calendar.getTime());
+
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("HH:mm");
+        String time = simpleDateFormat1.format(calendar.getTime());
+
+
+        updatestatus updatestatus = new updatestatus();
+        updatestatus.setChatting("chatting");
+        updatestatus.setStatus("online");
+        reference.setValue(updatestatus);
     }
 }
