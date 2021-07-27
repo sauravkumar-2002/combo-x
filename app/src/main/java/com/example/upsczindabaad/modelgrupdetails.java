@@ -1,7 +1,15 @@
 package com.example.upsczindabaad;
 
 public class modelgrupdetails {
-    String groupname,gruppic;
+    String groupname,gruppic,grupcode;
+
+    public String getGrupcode() {
+        return grupcode;
+    }
+
+    public void setGrupcode(String grupcode) {
+        this.grupcode = grupcode;
+    }
 
     public String getGroupname() {
         return groupname;

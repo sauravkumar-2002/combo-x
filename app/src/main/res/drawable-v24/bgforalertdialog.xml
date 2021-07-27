@@ -6,13 +6,16 @@
 
         <shape android:shape="rectangle">
 
-            <corners android:bottomLeftRadius="0dp"
-                android:bottomRightRadius="0dp"
+            <corners android:bottomLeftRadius="30dp"
+                android:bottomRightRadius="30dp"
+
                 android:topRightRadius="30dp"
-                android:topLeftRadius="30dp"/>
+                android:topLeftRadius="30dp"
+
+                />
             <gradient android:angle="270"
-                android:startColor="#F392A0"
-                android:endColor="#3F0D12"/>
+                android:startColor="#6F4BEF"
+                android:endColor="#D83F56"/>
 
 
 

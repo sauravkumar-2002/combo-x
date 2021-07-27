@@ -2,6 +2,7 @@ package com.example.upsczindabaad;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -13,8 +14,13 @@ import android.widget.EditText;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import es.dmoral.toasty.Toasty;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +31,8 @@ public class bottomFragmentJoin extends BottomSheetDialogFragment {
 
     EditText invitecode;
     Button joinGrp;
+    int ans=0;
+    String s1;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -82,11 +90,35 @@ public class bottomFragmentJoin extends BottomSheetDialogFragment {
            public void onClick(View v) {
                String invite=invitecode.getText().toString().trim();
 
-               DatabaseReference reference= FirebaseDatabase.getInstance().getReference("groups").child(invite);
+               DatabaseReference reference= FirebaseDatabase.getInstance().getReference("totalgroup");
+               reference.addValueEventListener(new ValueEventListener() {
+                   @Override
+                   public void onDataChange(@NonNull DataSnapshot snapshot) {
+                       for(DataSnapshot s: snapshot.getChildren()){
+                            modeltotalgroup modeltotalgroup=s.getValue(com.example.upsczindabaad.modeltotalgroup.class);
+                         s1=modeltotalgroup.getInvitecode();
 
-               FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-               String uid=user.getUid();
-               reference.push().setValue(uid);
+                           if(s1.equals(invite)){
+                               ans=1;
+                               break;
+                           }
+
+
+                       }
+                       if(ans==1){
+                           Toasty.success(getActivity(),"joined").show();
+                           dismiss();
+                       }
+                       else {
+                           Toasty.error(getActivity(),"Enter Correct Invite Code").show();
+                       }
+                   }
+
+                   @Override
+                   public void onCancelled(@NonNull DatabaseError error) {
+
+                   }
+               });
 
            }
        });

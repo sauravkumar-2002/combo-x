@@ -1,5 +1,6 @@
 package com.example.upsczindabaad;
 
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -252,8 +253,6 @@ reference.addValueEventListener(new ValueEventListener() {
         um.setUsername(userNm);
         um.setPimage(userpimage);
         ref.child(uid).setValue(um);
-
-
     }
 
 

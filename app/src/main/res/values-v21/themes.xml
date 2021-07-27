@@ -15,6 +15,7 @@
         <item name="android:windowActivityTransitions">true</item>
 
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <item name="alertDialogTheme">@style/AppBottomSheetDialogTheme1</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -27,6 +28,20 @@
 
     <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bgforjoin</item>
+
+
+
+    </style>
+    <style name="AppBottomSheetDialogTheme1" parent="Theme.Design.BottomSheetDialog">
+
+
+        <item name="bottomSheetStyle">@style/AppModalStyle1</item>
+
+    </style>
+
+    <style name="AppModalStyle1" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bgforalertdialog</item>
+
 
 
     </style>

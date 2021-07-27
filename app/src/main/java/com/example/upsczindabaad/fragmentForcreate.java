@@ -101,7 +101,8 @@ public class fragmentForcreate extends BottomSheetDialogFragment {
                 String invitecode = getrandomstring(s);
                 String edtgrup = groupname.getText().toString().trim();
 
-
+                DatabaseReference ret2=FirebaseDatabase.getInstance().getReference("totalgroup");
+                ret2.push().child("invitecode").setValue(invitecode);
                 DatabaseReference refw = FirebaseDatabase.getInstance().getReference("grup").child(invitecode);
 
                 modelgrupparticipants modelgroup = new modelgrupparticipants();
