@@ -10,8 +10,8 @@
 
 
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/cgprofpic"
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
@@ -58,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
+
             android:layout_marginTop="46dp"
             android:layout_marginRight="25dp"
             android:hint="Group Name"
@@ -69,6 +70,7 @@
                 android:background="#E1C7C7"
                 android:inputType="textShortMessage"
                 android:textColor="@color/black"
+                android:id="@+id/cggrupname"
                 android:textColorHint="@color/white"
                 android:textStyle="bold"
                 android:textAlignment="center"
@@ -80,6 +82,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/creategrup"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="40dp"
