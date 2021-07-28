@@ -49,8 +49,7 @@
 
             android:layout_height="110dp"
             android:layout_gravity="center"
-            android:src="@drawable/userimage"
-             />
+            android:src="@drawable/userimage" />
 
         <TextView
             android:id="@+id/profileUserName"
@@ -71,24 +70,28 @@
             android:text="fullname"
             android:textColor="@color/sandeep"
             android:textSize="16sp" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:orientation="horizontal"
-            android:onClick="profchange"
             android:layout_gravity="center"
-            android:gravity="center">
+            android:gravity="center"
+            android:onClick="profchange"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Edit Profile"
-                android:textSize="21dp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="21dp" />
+
             <ImageView
                 android:layout_width="29dp"
                 android:layout_height="32dp"
-                android:src="@drawable/pencil2"/>
+                android:src="@drawable/pencil2" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -138,9 +141,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/groupsrecv"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="9dp" />
+            android:layout_margin="10dp" />
 
     </LinearLayout>
 </ScrollView>

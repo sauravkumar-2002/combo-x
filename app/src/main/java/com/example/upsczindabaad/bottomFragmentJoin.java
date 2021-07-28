@@ -182,8 +182,11 @@ ans=0;
                                            modelgrupparticipants.setUid(uidf);
                                            red.child("members").push().setValue(modelgrupparticipants);
 
-                                           DatabaseReference ret23=FirebaseDatabase.getInstance().getReference("userowngroup");
-                                           ret23.child(uidf).child(uidf).setValue(invitecode1);
+                                           DatabaseReference ret23=FirebaseDatabase.getInstance().getReference("userowngroup").child(uidf);
+                                           modeltotalgroup md=new modeltotalgroup();
+                                           md.setInvitecode(invitecode1);
+                                           ret23.push().setValue(md);
+
                                            Intent intent=new Intent(getActivity(),groupchat.class);
                                            startActivity(intent);
 

@@ -141,6 +141,9 @@ String uid,link;
 
     public void posts(View view) {
 
+        Intent intent=new Intent(getApplicationContext(),tabbedWindow.class);
+        startActivity(intent);
+
 
     }
 

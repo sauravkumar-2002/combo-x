@@ -114,8 +114,11 @@ public class fragmentForcreate extends BottomSheetDialogFragment {
                 refw.child("groupdetails").setValue(modelgrupdetails);
 
                 DatabaseReference ret23=FirebaseDatabase.getInstance().getReference("userowngroup").child(uid);
-                ret23.push().setValue(invitecode);
-
+               // ret23.push().child("invitecode").setValue(invitecode);
+modeltotalgroup mdt=new modeltotalgroup();
+mdt.setInvitecode(invitecode);
+mdt.setGroupName(edtgrup);
+ret23.push().setValue(mdt);
 
 
                 // dismiss();

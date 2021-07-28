@@ -1,6 +1,5 @@
 package com.example.upsczindabaad;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -12,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,58 +22,106 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
-import com.squareup.picasso.Picasso;
 
-import es.dmoral.toasty.Toasty;
+import java.util.ArrayList;
 
 public class myprofile extends AppCompatActivity {
 
-   ImageView profpic;
+    ImageView profpic;
     TextView profilefullname, profileusername;
-    userdatamodel umd1,profimage;
+    userdatamodel umd1, profimage;
     Uri profilepicurl;
-    String uid,link;
+    String uid, link;
+    RecyclerView grouprecView;
+
+    ArrayList<grpChatModel> datalist;
+    grpAdapterForprofile grpAdapterForprofile;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myprofile);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        profpic=findViewById(R.id.mpprof);
+        profpic = findViewById(R.id.mpprof);
         profilefullname = findViewById(R.id.profileFullname);
         profileusername = findViewById(R.id.profileUserName);
+        grouprecView=findViewById(R.id.groupsrecv);
 
+        datalist=new ArrayList<>();
+        grouprecView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
+
+        grpAdapterForprofile=new grpAdapterForprofile(datalist);
+        grouprecView.setAdapter(grpAdapterForprofile);
+        showAllGrp();
 
         setCorrectUserDetails();
         setprofileimage();
 
     }
 
-    private void setprofileimage() {
-        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+    private void showAllGrp() {
 
-        uid=user.getUid();
-        FirebaseDatabase db1=FirebaseDatabase.getInstance();
-        DatabaseReference ref2=db1.getReference("List of Users").child(uid);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("userowngroup").child(uid);
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                datalist.clear();
+
+                for (DataSnapshot d : snapshot.getChildren()) {
+                    modeltotalgroup md=d.getValue(modeltotalgroup.class);
+                    String groupName=md.getGroupName();
+
+
+                    grpChatModel grp=new grpChatModel();
+                    grp.setGrpName(groupName);
+                    grp.setGrpImage(R.drawable.arturo);
+
+                    datalist.add(grp);
+
+
+
+                }
+                grpAdapterForprofile.notifyDataSetChanged();
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
+    private void setprofileimage() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        uid = user.getUid();
+        FirebaseDatabase db1 = FirebaseDatabase.getInstance();
+        DatabaseReference ref2 = db1.getReference("List of Users").child(uid);
         ref2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 profimage = snapshot.getValue(userdatamodel.class);
                 link = profimage.pimage;
                 if (link.equals("notuploaded")) {
-                   // Toasty.success(getApplicationContext(), "Default image has been setted").show();
-                }
-                else {
+                    // Toasty.success(getApplicationContext(), "Default image has been setted").show();
+                } else {
                     Glide.with(myprofile.this)
                             .load(link)
                             .into(profpic);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -127,7 +176,7 @@ public class myprofile extends AppCompatActivity {
     }
 
     public void profchange(View view) {
-        Intent intent=new Intent(getApplicationContext(),editmyprofile.class);
+        Intent intent = new Intent(getApplicationContext(), editmyprofile.class);
         startActivity(intent);
     }
 }
