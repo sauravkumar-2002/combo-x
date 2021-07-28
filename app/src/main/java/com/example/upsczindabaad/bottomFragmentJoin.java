@@ -193,7 +193,7 @@ ans=0;
                                        }
 
                                        else if(ans==1){
-                                           Toast.makeText(getActivity(), "You Are Already in This Group",Toast.LENGTH_SHORT).show();
+                                           Toasty.info(getActivity(), "You Are Already in This Group").show();
                                        }
                                        else {
                                            Toasty.error(getActivity(),"Enter Correct Invite Code").show();
