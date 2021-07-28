@@ -15,4 +15,7 @@ public class edtgrup extends AppCompatActivity {
 
     public void profchange(View view) {
     }
+
+    public void uploaddone(View view) {
+    }
 }

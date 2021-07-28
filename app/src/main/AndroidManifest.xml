@@ -14,7 +14,6 @@
         android:theme="@style/Theme.UpscZindabaad">
         <activity android:name=".edtgrup"></activity>
         <activity android:name=".groupchat" />
-        <activity android:name=".creategroup" />
         <activity android:name=".editmyprofile" />
         <activity android:name=".myprofile" />
         <activity android:name=".chtwnd" />

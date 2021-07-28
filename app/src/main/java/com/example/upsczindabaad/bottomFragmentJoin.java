@@ -6,11 +6,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,8 +34,9 @@ public class bottomFragmentJoin extends BottomSheetDialogFragment {
 
     EditText invitecode;
     Button joinGrp;
-    int ans=0;
+    int ans;
     String s1;
+    String uidf;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -87,44 +90,132 @@ public class bottomFragmentJoin extends BottomSheetDialogFragment {
        invitecode=v.findViewById(R.id.inviteCode);
 
        joinGrp.setOnClickListener(new View.OnClickListener() {
+
            @Override
            public void onClick(View v) {
+               /*
+ans=0;
+               FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+               String uid=user.getUid();
+     String invitecode1=invitecode.getText().toString().trim();
+     DatabaseReference reft=FirebaseDatabase.getInstance().getReference("totalgroup");
+     reft.addValueEventListener(new ValueEventListener() {
+         @Override
+         public void onDataChange(@NonNull DataSnapshot snapshot) {
+             for(DataSnapshot s:snapshot.getChildren()){
+                modeltotalgroup modeltotalgroup=s.getValue(com.example.upsczindabaad.modeltotalgroup.class);
+                 s1=modeltotalgroup.getInvitecode();
+               //  Log.v("hhhs1",s1);
+
+
+                 if(s1.equals(invitecode1)){
+                     DatabaseReference reft=FirebaseDatabase.getInstance().getReference("grup");
+
+                 }
+             }
+         }
+
+         @Override
+         public void onCancelled(@NonNull DatabaseError error) {
+
+         }
+     });
+
+    // Toasty.success(getActivity(),"ans is"+s1).show();
+
+
+
+
+
+*/
+
+
                String invitecode1=invitecode.getText().toString().trim();
 
                DatabaseReference reference= FirebaseDatabase.getInstance().getReference("totalgroup");
                reference.addValueEventListener(new ValueEventListener() {
                    @Override
                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                        for(DataSnapshot s: snapshot.getChildren()){
-                            modeltotalgroup modeltotalgroup=s.getValue(com.example.upsczindabaad.modeltotalgroup.class);
-                         s1=modeltotalgroup.getInvitecode();
+                           ans=0;
+                           modeltotalgroup modeltotalgroup=s.getValue(com.example.upsczindabaad.modeltotalgroup.class);
+                           s1=modeltotalgroup.getInvitecode();
 
                            if(s1.equals(invitecode1)){
-                               ans=1;
-                               break;
-                           }
+
+                               DatabaseReference redf=FirebaseDatabase.getInstance().getReference("grup").child(invitecode1).child("members");
+                               redf.addValueEventListener(new ValueEventListener() {
+                                   @Override
+                                   public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                     //  Toasty.success(getActivity(),s1).show();
+
+                                       FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+                                       uidf=user.getUid();
+
+                                       for (DataSnapshot s:snapshot.getChildren()){
+
+                                           modelgrupparticipants modelgrupparticipants=s.getValue(com.example.upsczindabaad.modelgrupparticipants.class);
+                                           String s2=modelgrupparticipants.getUid();
+
+                                          // Toasty.success(getActivity(),s2+"\n"+uidf).show();
+
+                                           if(s2.equals(uidf)){
+                                               ans=1;
+
+                                             //  Toasty.success(getActivity(),s2+ans).show();
+
+                                               break;
+                                           }
+                                           else{
+                                               ans=2;
+                                           }
+                                       }
+
+                                       if(ans==2){
+                                           Toasty.success(getActivity(),"joined").show();
+                                           dismiss();
+
+                                           DatabaseReference red=FirebaseDatabase.getInstance().getReference("grup").child(invitecode1);
+                                           modelgrupparticipants modelgrupparticipants=new modelgrupparticipants();
+                                           modelgrupparticipants.setUid(uidf);
+                                           red.child("members").push().setValue(modelgrupparticipants);
+
+                                           DatabaseReference ret23=FirebaseDatabase.getInstance().getReference("userowngroup");
+                                           ret23.child(uidf).child(uidf).setValue(invitecode1);
+                                           Intent intent=new Intent(getActivity(),groupchat.class);
+                                           startActivity(intent);
+
+                                       }
+
+                                       else if(ans==1){
+                                           Toast.makeText(getActivity(), "You Are Already in This Group",Toast.LENGTH_SHORT).show();
+                                       }
+                                       else {
+                                           Toasty.error(getActivity(),"Enter Correct Invite Code").show();
+                                       }
 
 
-                       }
-                       if(ans==1){
-                           Toasty.success(getActivity(),"joined").show();
-                           dismiss();
-                           FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-                           String uidf=user.getUid();
-                           if(uidf.equals("null")){
+                                   }
 
+                                   @Override
+                                   public void onCancelled(@NonNull DatabaseError error) {
+
+                                   }
+                               });
+break;
                            }
                            else{
-                               DatabaseReference red=FirebaseDatabase.getInstance().getReference("grup").child(invitecode1);
-                               modelgrupparticipants modelgrupparticipants=new modelgrupparticipants();
-                               modelgrupparticipants.setUid(uidf);
-                               red.child("members").child(uidf).setValue(modelgrupparticipants);
+                               continue;
                            }
 
+
                        }
-                       else {
-                           Toasty.error(getActivity(),"Enter Correct Invite Code").show();
-                       }
+
+                     //  Toasty.success(getActivity(),s1+ans).show();
+
+
                    }
 
                    @Override
@@ -132,8 +223,6 @@ public class bottomFragmentJoin extends BottomSheetDialogFragment {
 
                    }
                });
-               Intent intent=new Intent(getActivity(),groupchat.class);
-               startActivity(intent);
 
 
 
@@ -146,3 +235,8 @@ public class bottomFragmentJoin extends BottomSheetDialogFragment {
 
     }
 }
+/*ans=1;
+        Toasty.success(getActivity(),"ans is"+s1+"  "+invitecode1+ans).show();
+        break;
+
+ */
