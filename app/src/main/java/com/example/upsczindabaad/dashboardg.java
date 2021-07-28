@@ -119,15 +119,8 @@ String uid,link;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void startchat(View view) {
-        Intent intent1=new Intent(getApplicationContext(),individualchat.class);
-        Pair[] pairs=new Pair[1];
-        pairs[0]=new Pair<View,String>(mainImage,"IndividualChatsImage");
-
-
-        ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation(this,pairs);
-
-
-        startActivity(intent1,options.toBundle());
+        Intent intent=new Intent(getApplicationContext(),tabbedWindow.class);
+        startActivity(intent);
     }
 
     public void createroom(View view) {
@@ -141,8 +134,7 @@ String uid,link;
 
     public void posts(View view) {
 
-        Intent intent=new Intent(getApplicationContext(),tabbedWindow.class);
-        startActivity(intent);
+
 
 
     }
