@@ -192,7 +192,7 @@ public class fragmentForcreate extends BottomSheetDialogFragment {
 
 
     public static String getrandomstring(int i) {
-        final String chaaracters = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJkl";
+        final String chaaracters = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJklMNOPQRSTUV";
         StringBuilder result = new StringBuilder();
         while (i > 0) {
             Random rand = new Random();
