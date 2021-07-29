@@ -14,26 +14,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/icprofilepic"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="23dp"
-                android:src="@drawable/userimage"
-                android:transitionName="IndividualChatsImage" />
-
-            <TextView
-                android:id="@+id/icusername"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Deven Doyle"
-                android:textColor="@color/white"
-                android:textSize="39dp"
-                android:textStyle="bold"
-                android:transitionName="IndivualChatsText" />
 
 
             <androidx.recyclerview.widget.RecyclerView

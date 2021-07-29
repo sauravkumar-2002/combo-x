@@ -85,14 +85,13 @@ public class groupsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        setUserName();
+      //  setUserName();
 
 
         View v = inflater.inflate(R.layout.fragment_groups, container, false);
 
         recViewGrp = v.findViewById(R.id.icrecviewGrp);
-        usernameGrp = v.findViewById(R.id.icusernameGrp);
-        imageGrp = v.findViewById(R.id.icprofilepicGrp);
+
 
         glist = new ArrayList<>();
 
@@ -105,21 +104,6 @@ public class groupsFragment extends Fragment {
         showAllGrp();
 
 
-        imageGrp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), myprofile.class);
-                startActivity(intent);
-            }
-        });
-
-        usernameGrp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), myprofile.class);
-                startActivity(intent);
-            }
-        });
 
 
         return v;

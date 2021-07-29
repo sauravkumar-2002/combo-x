@@ -6,15 +6,61 @@
     android:layout_height="match_parent"
     tools:context=".tabbedWindow">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear"
+        android:background="#030111"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/icprofilepic"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="23dp"
+            android:src="@drawable/prof"
+            android:transitionName="IndividualChatsImage" />
+
+        <TextView
+            android:id="@+id/icusername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Deven Doyle"
+            android:textColor="@color/white"
+            android:textSize="39dp"
+            android:textStyle="bold"
+            android:transitionName="IndivualChatsText" />
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
 
     <com.google.android.material.tabs.TabLayout
         android:background="#030111"
+        android:layout_below="@id/linear"
         android:layout_width="match_parent"
         app:tabTextColor="@color/white"
         app:tabSelectedTextColor="#E91E63"
        app:tabIndicatorColor="#E91E63"
         android:layout_height="wrap_content"
         android:id="@+id/tab_layout"/>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tab_layout"
+        android:id="@+id/container"/>
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"

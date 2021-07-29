@@ -2,17 +2,15 @@ package com.example.upsczindabaad;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,10 +30,12 @@ import es.dmoral.toasty.Toasty;
  */
 public class bottomFragmentJoin extends BottomSheetDialogFragment {
 
+    int ans = 0;  //1-grp exists  2-grp exists not memeber 3--exists and member 0-grp doest exists
     EditText invitecode;
+    int res = 0;  // 1-memeber 0-not member
     Button joinGrp;
     modelgrupdetails modelgrupdetails1;
-    int ans = 0;
+
     String s1, invitecode1, sname = "kkkk", spic;
     String uidf;
 
@@ -89,138 +89,100 @@ public class bottomFragmentJoin extends BottomSheetDialogFragment {
         joinGrp = v.findViewById(R.id.joinGrp);
         invitecode = v.findViewById(R.id.inviteCode);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        uidf = user.getUid();
+
+
         joinGrp.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-               /*
-ans=0;
-               FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
-               String uid=user.getUid();
-     String invitecode1=invitecode.getText().toString().trim();
-     DatabaseReference reft=FirebaseDatabase.getInstance().getReference("totalgroup");
-     reft.addValueEventListener(new ValueEventListener() {
-         @Override
-         public void onDataChange(@NonNull DataSnapshot snapshot) {
-             for(DataSnapshot s:snapshot.getChildren()){
-                modeltotalgroup modeltotalgroup=s.getValue(com.example.upsczindabaad.modeltotalgroup.class);
-                 s1=modeltotalgroup.getInvitecode();
-               //  Log.v("hhhs1",s1);
-
-
-                 if(s1.equals(invitecode1)){
-                     DatabaseReference reft=FirebaseDatabase.getInstance().getReference("grup");
-
-                 }
-             }
-         }
-
-         @Override
-         public void onCancelled(@NonNull DatabaseError error) {
-
-         }
-     });
-
-    // Toasty.success(getActivity(),"ans is"+s1).show();
-
-
-
-
-
-*/
-
 
                 invitecode1 = invitecode.getText().toString().trim();
-
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("totalgroup");
-                reference.addValueEventListener(new ValueEventListener() {
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("totalgroup");
+                databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                        ans = 0;
+                        res = 0;
                         for (DataSnapshot s : snapshot.getChildren()) {
-                            Log.v("ghu","one");
-                            modelx modeltotalgroup = s.getValue(com.example.upsczindabaad.modelx.class);
-                            s1 = modeltotalgroup.getInvitecode();
-
-                            if (s1.equals(invitecode1)) {
-
-                                DatabaseReference redf = FirebaseDatabase.getInstance().getReference("grup").child(invitecode1).child("members");
-                                redf.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                                        //  Toasty.success(getActivity(),s1).show();
-
-                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                        uidf = user.getUid();
-
-                                        for (DataSnapshot s : snapshot.getChildren()) {
-
-                                            modelgrupparticipants modelgrupparticipants = s.getValue(com.example.upsczindabaad.modelgrupparticipants.class);
-                                            String s2 = modelgrupparticipants.getUid();
-
-                                            // Toasty.success(getActivity(),s2+"\n"+uidf).show();
-
-                                            if (s2.equals(uidf)) {
-                                                ans = 1;
-
-                                                //  Toasty.success(getActivity(),s2+ans).show();
-
-                                                break;
-                                            } else {
-                                                ans = 2;
-
-                                            }
-                                        }
-                                        //Toasty.success(getActivity(),ans+"f").show();
-                                        if (ans == 2) {
-
-                                            //  Toasty.success(getActivity(),ans+"s").show();
-                                            Toasty.success(getActivity(), "joined").show();
-                                            dismiss();
-
-                                            DatabaseReference red = FirebaseDatabase.getInstance().getReference("grup").child(invitecode1);
-                                            modelgrupparticipants modelgrupparticipants = new modelgrupparticipants();
-                                            modelgrupparticipants.setUid(uidf);
-                                            red.child("members").push().setValue(modelgrupparticipants);
-                                            Toast.makeText(getActivity(),"fgfg",Toast.LENGTH_SHORT).show();
-                                            //Toasty.success(getActivity(), "t").show();
-
-                                            retrivedata();
-                                            DatabaseReference ret23 = FirebaseDatabase.getInstance().getReference("userowngroup").child(uidf);
-                                            modeluserowngrup md = new modeluserowngrup();
-                                            md.setInvitecode(invitecode1);
-                                            md.setGrouppic(spic);
-                                            md.setGroupName(sname);
-                                            ret23.push().setValue(md);
-                                            Toast.makeText(getActivity(), sname, Toast.LENGTH_SHORT).show();
-
-
-                                        } else {
-                                            // Toast.makeText(getActivity(),"fgfg",Toast.LENGTH_SHORT).show();
-                                            //Toasty.info(getContext(), "You Are Already in This Group").show();
-                                        }
-
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
+                            modelx modelx = s.getValue(com.example.upsczindabaad.modelx.class);
+                            if (modelx.getInvitecode().equals(invitecode1)) {
+                                ans = 1;
                                 break;
-                            } else {
-                                continue;
                             }
 
-
                         }
-                        if (ans == 0) {
-                            Toasty.error(getActivity(), "Enter Correct Invite Code").show();
-                            Log.v("ghu","two");
-                        }                 //  Toasty.success(getActivity(),s1+ans).show();
+
+                        if (ans == 1) {
+
+                            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("grup").child(invitecode1).child("members");
+                            reference.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                    for (DataSnapshot sn : snapshot.getChildren()) {
+                                        modelgrupparticipants modelgrupparticipants = sn.getValue(com.example.upsczindabaad.modelgrupparticipants.class);
+                                        String uid = modelgrupparticipants.getUid();
+                                        if (uid.equals(uidf)) {
+                                            res = 1;
+                                            break;
+
+                                        }
+
+                                    }
+
+                                    if (res == 1)
+                                        Toasty.error(getContext(), "you are already a member").show();
+
+                                    else {
+
+                                        DatabaseReference reference1=FirebaseDatabase.getInstance().getReference("grup").child(invitecode1).child("groupdetails");
+                                        reference1.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                modelgrupdetails modelgrupdetails=snapshot.getValue(com.example.upsczindabaad.modelgrupdetails.class);
+
+                                                String grpname=modelgrupdetails.getGroupname();
+                                                String  grpImage=modelgrupdetails.getGruppic();
+                                             //   Log.v("sandy",grpImage);
+
+                                                DatabaseReference reference2=FirebaseDatabase.getInstance().getReference("userowngroup").child(uidf);
+                                                modeluserowngrup modeluserowngrup=new modeluserowngrup();
+                                                modeluserowngrup.setGroupName(grpname);
+                                                modeluserowngrup.setGrouppic(grpImage);
+                                                modeluserowngrup.setInvitecode(invitecode1);
+                                                reference2.push().setValue(modeluserowngrup);
+
+                                                Toasty.success(getContext(),"You are Successfully Added to "+grpname).show();
+
+                                                Intent intent=new Intent(getContext(),tabbedWindow.class);
+                                                intent.putExtra("check",1);
+                                                startActivity(intent);
+
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+
+
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+
+                        } else Toasty.error(getContext(), "grp not exist").show();
 
 
                     }
@@ -241,28 +203,7 @@ ans=0;
     }
 
     private void retrivedata() {
-        DatabaseReference ret = FirebaseDatabase.getInstance().getReference("grup").child(invitecode1).child("groupdetails");
-        ret.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                modelgrupdetails1 = snapshot.getValue(modelgrupdetails.class);
-                sname = modelgrupdetails1.getGroupname();
-                spic = modelgrupdetails1.getGruppic();
-                Log.v("ghjk",sname);
-                // Toast.makeText(getActivity(),sname,Toast.LENGTH_SHORT).show();
 
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
-
 }
-/*ans=1;
-        Toasty.success(getActivity(),"ans is"+s1+"  "+invitecode1+ans).show();
-        break;
-
- */

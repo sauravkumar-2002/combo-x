@@ -1,9 +1,5 @@
 package com.example.upsczindabaad;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
@@ -14,6 +10,10 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,9 +22,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
-
-import es.dmoral.toasty.Toasty;
 
 public class dashboardg extends AppCompatActivity {
 
@@ -32,28 +29,30 @@ public class dashboardg extends AppCompatActivity {
     userdatamodel umd, profimage;
     TextView helloMSg;
     TextView icText;
-String uid,link;
+    String uid, link;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboardg);
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        mainImage=findViewById(R.id.mainUserIMage);
-        helloMSg=findViewById(R.id.hellomsg);
-        icText=findViewById(R.id.individualChatText);
+        mainImage = findViewById(R.id.mainUserIMage);
+        helloMSg = findViewById(R.id.hellomsg);
+        icText = findViewById(R.id.individualChatText);
 
 
         setprofileimage();
         setCorrectHelloMsg();
     }
-    private void setprofileimage() {
-        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
 
-        uid=user.getUid();
-        FirebaseDatabase db1=FirebaseDatabase.getInstance();
-        DatabaseReference ref2=db1.getReference("List of Users").child(uid);
+    private void setprofileimage() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        uid = user.getUid();
+        FirebaseDatabase db1 = FirebaseDatabase.getInstance();
+        DatabaseReference ref2 = db1.getReference("List of Users").child(uid);
         ref2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -76,24 +75,25 @@ String uid,link;
             }
         });
     }
+
     private void setCorrectHelloMsg() {
 
-        FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        String uid=user.getUid();
-        FirebaseDatabase db=FirebaseDatabase.getInstance();
-        DatabaseReference ref=db.getReference("List of Users").child(uid);
+        String uid = user.getUid();
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference ref = db.getReference("List of Users").child(uid);
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                 umd=new userdatamodel();
-                umd=snapshot.getValue(userdatamodel.class);
+                umd = new userdatamodel();
+                umd = snapshot.getValue(userdatamodel.class);
 
-                String username=umd.getUsername();
+                String username = umd.getUsername();
 
-                helloMSg.setText("Hello,\n"+username);
+                helloMSg.setText("Hello,\n" + username);
 
 
             }
@@ -109,45 +109,42 @@ String uid,link;
 
     public void joinroom(View view) {
 
-        bottomFragmentJoin bottomFragmentJoin=new bottomFragmentJoin();
-        bottomFragmentJoin.show(getSupportFragmentManager(),bottomFragmentJoin.getTag());
-
-
+        bottomFragmentJoin bottomFragmentJoin = new bottomFragmentJoin();
+        bottomFragmentJoin.show(getSupportFragmentManager(), bottomFragmentJoin.getTag());
 
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void startchat(View view) {
-        Intent intent=new Intent(getApplicationContext(),tabbedWindow.class);
+        Intent intent = new Intent(getApplicationContext(), tabbedWindow.class);
+        intent.putExtra("check",0);
         startActivity(intent);
     }
 
     public void createroom(View view) {
-        fragmentForcreate fragmentForcreate=new fragmentForcreate();
-        fragmentForcreate.show(getSupportFragmentManager(),fragmentForcreate.getTag());
+        fragmentForcreate fragmentForcreate = new fragmentForcreate();
+        fragmentForcreate.show(getSupportFragmentManager(), fragmentForcreate.getTag());
 
 
     }
 
 
-
     public void posts(View view) {
-Intent intent=new Intent(getApplicationContext(),com.example.upsczindabaad.posts.posttab.class);
-startActivity(intent);
-
+        Intent intent = new Intent(getApplicationContext(), com.example.upsczindabaad.posts.posttab.class);
+        startActivity(intent);
 
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void myprofile(View view) {
-        Intent intent1=new Intent(getApplicationContext(),myprofile.class);
-        Pair[] pairs=new Pair[1];
-        pairs[0]=new Pair<View,String>(mainImage,"myProfileImage");
+        Intent intent1 = new Intent(getApplicationContext(), myprofile.class);
+        Pair[] pairs = new Pair[1];
+        pairs[0] = new Pair<View, String>(mainImage, "myProfileImage");
 
-        ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation(this,pairs);
-        startActivity(intent1,options.toBundle());
+        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this, pairs);
+        startActivity(intent1, options.toBundle());
 
     }
 }

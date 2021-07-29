@@ -88,8 +88,7 @@ public class individual_chats extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_individual_chats, container, false);
 
-        icusername = v.findViewById(R.id.icusername);
-        icprofilepic = v.findViewById(R.id.icprofilepic);
+
         icrecv = v.findViewById(R.id.icrecview);
         icrecv.setLayoutManager(new LinearLayoutManager(getContext()));
         list = new ArrayList<>();
@@ -141,23 +140,8 @@ public class individual_chats extends Fragment {
         });
 
 
-        setUserName();
+     //   setUserName();
 
-        icprofilepic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), myprofile.class);
-                startActivity(intent);
-            }
-        });
-
-        icusername.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), myprofile.class);
-                startActivity(intent);
-            }
-        });
 
 
 return v;
