@@ -27,6 +27,7 @@ import java.util.Random;
  */
 public class fragmentForcreate extends BottomSheetDialogFragment {
     EditText groupname;
+    String pic="notuploadeimg";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -110,7 +111,7 @@ public class fragmentForcreate extends BottomSheetDialogFragment {
                 refw.child("members").push().setValue(modelgroup);
                 modelgrupdetails modelgrupdetails = new modelgrupdetails();
                 modelgrupdetails.setGroupname(edtgrup);
-                modelgrupdetails.setGruppic("notuploadeimg");
+                modelgrupdetails.setGruppic(pic);
                 refw.child("groupdetails").setValue(modelgrupdetails);
 
                 DatabaseReference ret23=FirebaseDatabase.getInstance().getReference("userowngroup").child(uid);
@@ -118,7 +119,7 @@ public class fragmentForcreate extends BottomSheetDialogFragment {
 modeluserowngrup mdt=new modeluserowngrup();
 mdt.setInvitecode(invitecode);
 mdt.setGroupName(edtgrup);
-mdt.setGrouppic("notuploadeimg");
+mdt.setGrouppic(pic);
 ret23.push().setValue(mdt);
 
 
