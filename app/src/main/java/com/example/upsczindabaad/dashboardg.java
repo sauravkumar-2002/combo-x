@@ -133,7 +133,8 @@ String uid,link;
 
 
     public void posts(View view) {
-
+Intent intent=new Intent(getApplicationContext(),com.example.upsczindabaad.posts.posttab.class);
+startActivity(intent);
 
 
 
