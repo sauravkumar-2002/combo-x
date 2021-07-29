@@ -18,7 +18,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.048"
-        app:srcCompat="@drawable/dsh" />
+        app:srcCompat="@drawable/dsh"
+        android:onClick="postfragment"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/mainUserIMage"
@@ -120,7 +121,7 @@
         app:layout_constraintTop_toBottomOf="@+id/hellomsg"
         app:layout_constraintVertical_bias="0.825"
         app:srcCompat="@drawable/cards"
-        android:onClick="posts"
+        android:onClick="postfragment"
         android:background="@drawable/ripple"/>
 
 

@@ -182,13 +182,36 @@ ans=0;
                                            modelgrupparticipants.setUid(uidf);
                                            red.child("members").push().setValue(modelgrupparticipants);
 
-                                           DatabaseReference ret23=FirebaseDatabase.getInstance().getReference("userowngroup").child(uidf);
-                                           modeltotalgroup md=new modeltotalgroup();
-                                           md.setInvitecode(invitecode1);
-                                           ret23.push().setValue(md);
 
-                                           Intent intent=new Intent(getActivity(),groupchat.class);
-                                           startActivity(intent);
+                                           DatabaseReference rety=FirebaseDatabase.getInstance().getReference("grup").child(invitecode1).child("groupdetails");
+                                           rety.addValueEventListener(new ValueEventListener() {
+                                               @Override
+                                               public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                   modelgrupdetails modelgrupdetails=snapshot.getValue(com.example.upsczindabaad.modelgrupdetails.class);
+
+
+
+
+
+                                                   DatabaseReference ret23=FirebaseDatabase.getInstance().getReference("userowngroup").child(uidf);
+                                                   modeluserowngrup md=new modeluserowngrup();
+                                                   md.setInvitecode(invitecode1);
+                                                   md.
+                                                           ret23.push().setValue(md);
+
+                                                   Intent intent=new Intent(getActivity(),groupchat.class);
+                                                   startActivity(intent);
+
+                                               }
+
+                                               @Override
+                                               public void onCancelled(@NonNull DatabaseError error) {
+
+                                               }
+                                           });
+
+
+
 
                                        }
 

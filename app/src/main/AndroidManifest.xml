@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UpscZindabaad">
-        <activity android:name=".edtgrup"></activity>
+        <activity android:name=".post_tablayout"></activity>
+        <activity android:name=".edtgrup" />
         <activity android:name=".groupchat" />
         <activity android:name=".tabbedWindow" />
         <activity android:name=".editmyprofile" />

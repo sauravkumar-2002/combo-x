@@ -132,11 +132,9 @@ String uid,link;
 
 
 
-    public void posts(View view) {
-
-
-
-
+    public void postfragment(View view) {
+        Intent intent =new Intent(getApplicationContext(),post_tablayout.class);
+        startActivity(intent);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -149,4 +147,6 @@ String uid,link;
         startActivity(intent1,options.toBundle());
 
     }
+
+
 }
