@@ -155,6 +155,10 @@ public class bottomFragmentJoin extends BottomSheetDialogFragment {
                                                 modeluserowngrup.setInvitecode(invitecode1);
                                                 reference2.push().setValue(modeluserowngrup);
 
+
+                                                DatabaseReference reference3=FirebaseDatabase.getInstance().getReference("grup").child(invitecode1).child("members");
+                                                reference3.push().child("uid").setValue(uidf);
+
                                                 Toasty.success(getContext(),"You are Successfully Added to "+grpname).show();
 
                                                 Intent intent=new Intent(getContext(),tabbedWindow.class);

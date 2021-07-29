@@ -125,11 +125,13 @@ public class groupsFragment extends Fragment {
                 for (DataSnapshot d : snapshot.getChildren()) {
                     modeltotalgroup md = d.getValue(modeltotalgroup.class);
                     String groupName = md.getGroupName();
+                    String grpInviteCode=md.getInvitecode();
 
 
                     grpChatModel grp = new grpChatModel();
                     grp.setGrpName(groupName);
                     grp.setGrpImage(R.drawable.arturo);
+                    grp.setGrpInviteCode(grpInviteCode);
 
                     glist.add(grp);
 

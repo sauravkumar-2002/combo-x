@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UpscZindabaad">
-        <activity android:name=".posts.posttab"></activity>
+        <activity android:name=".chtwndGrp"></activity>
+        <activity android:name=".editGrpDetails" />
+        <activity android:name=".posts.posttab" />
         <activity android:name=".edtgrup" />
         <activity android:name=".groupchat" />
         <activity android:name=".tabbedWindow" />

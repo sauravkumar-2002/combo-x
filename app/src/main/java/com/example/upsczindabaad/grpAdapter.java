@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import es.dmoral.toasty.Toasty;
+
 public class grpAdapter extends RecyclerView.Adapter<grpAdapter.viewHolder> {
 
 
@@ -42,10 +44,12 @@ public class grpAdapter extends RecyclerView.Adapter<grpAdapter.viewHolder> {
             @Override
             public void onClick(View v) {
 
+              //  Toasty.success(context,"hello").show();
                 String str = "https://firebasestorage.googleapis.com/v0/b/upsczindabaad-6d9bf.appspot.com/o/image%2Fprof.png?alt=media&token=6166f093-4a90-4dce-8034-539a9dce792f";
-                Intent intent = new Intent(context, chtwnd.class);
+                Intent intent = new Intent(context, chtwndGrp.class);
                 intent.putExtra("name", data.get(position).getGrpName());
                 intent.putExtra("image", str);
+                intent.putExtra("invite", data.get(position).getGrpInviteCode());
                 context.startActivity(intent);
 
             }
