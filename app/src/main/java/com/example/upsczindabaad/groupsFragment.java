@@ -2,7 +2,6 @@ package com.example.upsczindabaad;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,11 +94,11 @@ public class groupsFragment extends Fragment {
         usernameGrp = v.findViewById(R.id.icusernameGrp);
         imageGrp = v.findViewById(R.id.icprofilepicGrp);
 
-        glist=new ArrayList<>();
+        glist = new ArrayList<>();
 
 
         recViewGrp.setLayoutManager(new LinearLayoutManager(getContext()));
-        grpAdapter=new grpAdapter(glist);
+        grpAdapter = new grpAdapter(glist,getContext());
         recViewGrp.setAdapter(grpAdapter);
 
 
@@ -140,21 +139,19 @@ public class groupsFragment extends Fragment {
                 glist.clear();
 
                 for (DataSnapshot d : snapshot.getChildren()) {
-                   modeltotalgroup md=d.getValue(modeltotalgroup.class);
-                   String groupName=md.getGroupName();
+                    modeltotalgroup md = d.getValue(modeltotalgroup.class);
+                    String groupName = md.getGroupName();
 
 
-                    grpChatModel grp=new grpChatModel();
+                    grpChatModel grp = new grpChatModel();
                     grp.setGrpName(groupName);
                     grp.setGrpImage(R.drawable.arturo);
 
                     glist.add(grp);
 
 
-
                 }
                 grpAdapter.notifyDataSetChanged();
-
 
 
             }

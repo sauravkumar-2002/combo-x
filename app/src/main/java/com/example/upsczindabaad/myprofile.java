@@ -52,7 +52,7 @@ public class myprofile extends AppCompatActivity {
         datalist=new ArrayList<>();
         grouprecView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
 
-        grpAdapterForprofile=new grpAdapterForprofile(datalist);
+        grpAdapterForprofile=new grpAdapterForprofile(datalist,this);
         grouprecView.setAdapter(grpAdapterForprofile);
         showAllGrp();
 

@@ -68,6 +68,9 @@ public class chtwnd extends AppCompatActivity {
         chatPersonName.setText(chatPerson);
         Glide.with(this).load(imgurt).into(chatPersonImage);
 
+
+
+
         list = new ArrayList<>();
         ic_adapter = new ic_adapter(list, this);
         chatrecv.setAdapter(ic_adapter);
