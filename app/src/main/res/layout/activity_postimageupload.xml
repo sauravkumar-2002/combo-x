@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".postimageupload"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imgpostbrowse"
+        android:layout_width="match_parent"
+        android:layout_height="244dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="44dp"
+        tools:srcCompat="@tools:sample/avatars" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="browse"
+        android:onClick="browseimage"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="uplload"
+        android:onClick="uploadimager"/>
+</LinearLayout>

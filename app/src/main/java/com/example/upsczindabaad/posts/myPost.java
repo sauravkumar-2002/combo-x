@@ -1,5 +1,6 @@
 package com.example.upsczindabaad.posts;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.upsczindabaad.R;
+import com.example.upsczindabaad.postaudioupload;
+import com.example.upsczindabaad.postimageupload;
+import com.example.upsczindabaad.postvideoupload;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +21,7 @@ import com.example.upsczindabaad.R;
  * create an instance of this fragment.
  */
 public class myPost extends Fragment {
+FloatingActionButton imageup,videoup,audioup;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,7 +66,35 @@ public class myPost extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+View v=inflater.inflate(R.layout.fragment_my_post, container, false);
+        videoup=v.findViewById(R.id.videopost);
+        imageup=v.findViewById(R.id.imagepost);
+        audioup=v.findViewById(R.id.audiopost);
+
+
+
+        videoup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getActivity(), postvideoupload.class);
+                startActivity(intent);
+            }
+        });
+        imageup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getActivity(), postimageupload.class);
+                startActivity(intent);
+            }
+        });
+        audioup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getActivity(), postaudioupload.class);
+                startActivity(intent);
+            }
+        });
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_post, container, false);
+        return v;
     }
 }
