@@ -113,13 +113,16 @@ ImageView imgpost;
                                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
                                             String currentDateandTime = sdf.format(new Date());
                                             DatabaseReference dery= FirebaseDatabase.getInstance().getReference("posts").child(uid);
-                                            postuploadmodel postuploadmodel=new postuploadmodel();
+                                            DatabaseReference deryall = FirebaseDatabase.getInstance().getReference("allposts");
+                                            allpostuploadmodel postuploadmodel=new allpostuploadmodel();
                                             postuploadmodel.setUsername(username);
                                             postuploadmodel.setPosttype("i");
                                             postuploadmodel.setPost(uploadedpic);
                                             postuploadmodel.setTime(currentDateandTime);
                                             postuploadmodel.setUseruploadedpic(profpic);
+                                           // postuploadmodel.setUid(uid);
                                             dery.push().setValue(postuploadmodel);
+                                            deryall.push().setValue(postuploadmodel);
                                         }
 
                                         @Override

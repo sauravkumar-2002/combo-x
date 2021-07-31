@@ -94,14 +94,14 @@ MediaController mediaController;
 
     public void uploadvideo(View view) {
         if (x == false) {
-            Toast.makeText(getApplicationContext(), "Choose Image First", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Choose Video First", Toast.LENGTH_SHORT).show();
         } else {
             ProgressDialog dialog = new ProgressDialog(this);
             dialog.setTitle("file uploader");
             dialog.show();
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
-            StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("post").child("myvideos/"+System.currentTimeMillis()+new Random().nextInt(100));
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("post").child("myvideos/"+System.currentTimeMillis()+new Random().nextInt(10000000));
             storageReference.putFile(videourl)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -121,6 +121,7 @@ MediaController mediaController;
                                             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
                                             String currentDateandTime = sdf.format(new Date());
                                             DatabaseReference dery = FirebaseDatabase.getInstance().getReference("posts").child(uid);
+                                            DatabaseReference deryall = FirebaseDatabase.getInstance().getReference("allposts");
                                             postuploadmodel postuploadmodel = new postuploadmodel();
                                             postuploadmodel.setUsername(username);
                                             postuploadmodel.setPosttype("v");
@@ -128,6 +129,7 @@ MediaController mediaController;
                                             postuploadmodel.setTime(currentDateandTime);
                                             postuploadmodel.setUseruploadedpic(profpic);
                                             dery.push().setValue(postuploadmodel);
+                                            deryall.push().setValue(postuploadmodel);
                                         }
 
                                         @Override

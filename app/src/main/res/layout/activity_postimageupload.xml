@@ -5,23 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".postimageupload"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#080429">
 
     <ImageView
         android:id="@+id/imgpostbrowse"
         android:layout_width="match_parent"
+        android:layout_marginTop="23dp"
         android:layout_height="244dp"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="44dp"
         tools:srcCompat="@tools:sample/avatars" />
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="213dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
+        android:layout_marginTop="79dp"
+        android:background="@drawable/bttn_background"
         android:text="browse"
         android:onClick="browseimage"/>
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="213dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="39dp"
         android:layout_height="wrap_content"
-        android:text="uplload"
+        android:text="upload"
+        android:background="@drawable/bttn_background"
         android:onClick="uploadimager"/>
 </LinearLayout>

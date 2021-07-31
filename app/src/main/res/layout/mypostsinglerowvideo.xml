@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#080429">
+
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="46dp"
+            android:layout_height="52dp"
+            android:src="@drawable/userimage"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/mypostvideouserimage"/>
+
+        <TextView
+            android:id="@+id/mypostvideousername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Derek Doyle"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="9dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="212dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        app:cardCornerRadius="17dp"
+        android:layout_marginBottom="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="211dp">
+
+            <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+                android:layout_width="389dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:resize_mode="fill"
+                android:id="@+id/postvideokkl"
+                app:use_controller="true" />
+
+            <ImageView
+                android:id="@+id/playmp"
+                android:layout_width="104dp"
+                android:layout_height="88dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/playbttn" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+    </androidx.cardview.widget.CardView>
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+        <ImageView
+
+            android:layout_width="27dp"
+            android:layout_height="28sp"
+            android:src="@drawable/like"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="19dp"
+            android:id="@+id/mpvideolike"/>
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="26dp"
+            android:src="@drawable/comment"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/commentmpvideo"/>
+
+
+
+
+
+
+    </LinearLayout>
+
+    <!--
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/white"/>
+    -->
+</LinearLayout>

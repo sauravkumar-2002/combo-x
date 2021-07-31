@@ -1,15 +1,20 @@
-package com.example.upsczindabaad.posts;
+package com.example.upsczindabaad;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.upsczindabaad.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -19,10 +24,9 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class allPost extends Fragment {
-
-    RecyclerView rvallpost;
-    ArrayList<allPostModel> data;
-    allPostAdapter allPostAdapter;
+RecyclerView recyclerView;
+    allpostadapternew allpostadapternew;
+    ArrayList<allpostmodelrecv> glist;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,57 +72,52 @@ public class allPost extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         View v = inflater.inflate(R.layout.fragment_all_post, container, false);
+        recyclerView=v.findViewById(R.id.rvallpost);
+        glist = new ArrayList<>();
 
-        rvallpost = v.findViewById(R.id.rvallpost);
-        rvallpost.setLayoutManager(new LinearLayoutManager(getContext()));
-        data = new ArrayList<>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        allpostadapternew = new allpostadapternew(glist,getContext());
+        recyclerView.setAdapter(allpostadapternew);
+showpostall();
+     //   allPostAdapter = new allPostAdapter(data, getContext());
+       // rvallpost.setAdapter(allPostAdapter);
 
-        allPostAdapter = new allPostAdapter(data, getContext());
-        rvallpost.setAdapter(allPostAdapter);
 
-        getAllpost();
         return v;
 
 
     }
 
-    private void getAllpost() {
-        allPostModel md=new allPostModel();
-        md.setUsernameap("sandeep");
-        md.setUserimageap(R.drawable.berlin);
-        md.setImageap(R.drawable.test);
-        md.setVori(2);
-      //  md.setAlpha(1);
-        data.add(md);
+    private void showpostall() {
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("allposts");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                glist.clear();
 
-        allPostModel md1=new allPostModel();
-        md1.setUsernameap("saurav");
-        md1.setUserimageap(R.drawable.arturo);
-        md1.setImageap(R.drawable.test2);
-        md1.setVori(1);
-       // md1.setAlpha(1);
-        data.add(md1);
+                for(DataSnapshot s:snapshot.getChildren()){
+                    allpostuploadmodel postuploadmodel=s.getValue(com.example.upsczindabaad.allpostuploadmodel.class);
+                   allpostmodelrecv  mp=new allpostmodelrecv();
+                    mp.setPostimage(postuploadmodel.getPost());
+                    mp.setProfimage(postuploadmodel.getUseruploadedpic());
+                    mp.setProfname(postuploadmodel.getUsername());
+                    // Toasty.success(getContext(),postuploadmodel.getPost()).show();
+                    glist.add(mp);
+                }
+                allpostadapternew.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
 
-        allPostModel md2=new allPostModel();
-        md2.setUsernameap("sneha");
-        md2.setUserimageap(R.drawable.tokyo);
-        md2.setImageap(R.drawable.test3);
-        md2.setVori(2);
-       // md2.setAlpha(0.55f);
-        data.add(md2);
-
-        allPostModel md3=new allPostModel();
-        md3.setUsernameap("shubham");
-        md3.setUserimageap(R.drawable.denver);
-        md3.setImageap(R.drawable.test4);
-        md3.setVori(1);
-       // md3.setAlpha(0.55f);
-        data.add(md3);
-
-        allPostAdapter.notifyDataSetChanged();
+    //   allPostAdapter.notifyDataSetChanged();
 
 
     }
-}

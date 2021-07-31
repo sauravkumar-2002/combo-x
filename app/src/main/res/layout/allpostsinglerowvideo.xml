@@ -8,8 +8,9 @@
     android:background="#080429">
 
 
+
     <LinearLayout
-        android:layout_marginTop="20dp"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -31,37 +32,11 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"/>
-
-        <ImageView
-
-            android:layout_width="27dp"
-            android:layout_height="28sp"
-            android:src="@drawable/like"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="110dp"
-            android:id="@+id/aplike"/>
-
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="26dp"
-            android:src="@drawable/comment"
-            android:layout_marginLeft="13dp"
-            android:layout_marginTop="15dp"
-            android:id="@+id/commentap"/>
-
-
-
-
-
-
     </LinearLayout>
-
-
-
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="212dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"
         app:cardCornerRadius="17dp"
@@ -70,26 +45,24 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-           >
-
-            <ImageView
-                android:id="@+id/imageap"
+            >
+            <VideoView
+                android:id="@+id/videoap"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/test" />
+                android:src="@drawable/test" />>
 
             <ImageView
                 android:id="@+id/playap"
+                android:layout_width="104dp"
+                android:layout_height="88dp"
                 android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/playbttn"
-                />
+                app:srcCompat="@drawable/playbttn" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -100,12 +73,44 @@
 
 
     </androidx.cardview.widget.CardView>
-<!--
-<View
-    android:layout_width="match_parent"
-    android:layout_height="2dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:background="@color/white"/>
--->
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+        <ImageView
+
+            android:layout_width="27dp"
+            android:layout_height="28sp"
+            android:src="@drawable/like"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="19dp"
+            android:id="@+id/aplike"/>
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="26dp"
+            android:src="@drawable/comment"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/commentap"/>
+
+
+
+
+
+
+    </LinearLayout>
+
+    <!--
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/white"/>
+    -->
 </LinearLayout>
