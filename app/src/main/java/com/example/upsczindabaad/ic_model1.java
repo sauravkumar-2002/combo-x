@@ -4,7 +4,13 @@ public class ic_model1 {
     String name,msg;
     int viewtype;
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getMsg() {
         return msg;
