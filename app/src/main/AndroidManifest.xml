@@ -12,22 +12,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UpscZindabaad">
-        <activity android:name=".postimageupload"></activity>
-        <activity android:name=".postaudioupload" />
-        <activity android:name=".postvideoupload" />
-        <activity android:name=".chtwndGrp"></activity>
-        <activity android:name=".editGrpDetails" />
-        <activity android:name=".posts.posttab" />
-        <activity android:name=".edtgrup" />
-        <activity android:name=".groupchat" />
-        <activity android:name=".tabbedWindow" />
-        <activity android:name=".editmyprofile" />
-        <activity android:name=".myprofile" />
-        <activity android:name=".chtwnd" />
-        <activity android:name=".individualchat" />
-        <activity android:name=".dashboardg" />
-        <activity android:name=".signUpactivity" />
-        <activity android:name=".loginActivityG">
+        <activity android:name=".postimageupload" android:screenOrientation="portrait" android:turnScreenOn="false"></activity>
+        <activity android:name=".postaudioupload"
+            android:screenOrientation="portrait" android:turnScreenOn="false"/>
+        <activity android:name=".postvideoupload"
+            android:screenOrientation="portrait" android:turnScreenOn="false"/>
+        <activity android:name=".chtwndGrp"
+            android:screenOrientation="portrait" android:turnScreenOn="false"></activity>
+        <activity android:name=".editGrpDetails"
+            android:screenOrientation="portrait" android:turnScreenOn="false"/>
+        <activity android:name=".posts.posttab"
+            android:screenOrientation="portrait" android:turnScreenOn="false"/>
+        <activity android:name=".edtgrup"
+            android:screenOrientation="portrait" android:turnScreenOn="false"/>
+        <activity android:name=".groupchat"
+            android:screenOrientation="portrait" android:turnScreenOn="false"
+            />
+        <activity android:name=".tabbedWindow"
+            android:screenOrientation="portrait" android:turnScreenOn="false"/>
+        <activity android:name=".editmyprofile"
+            android:screenOrientation="portrait" android:turnScreenOn="false"/>
+        <activity android:name=".myprofile"
+            android:screenOrientation="portrait" android:turnScreenOn="false"/>
+        <activity android:name=".chtwnd"
+            android:screenOrientation="portrait" android:turnScreenOn="false"/>
+        <activity android:name=".individualchat"
+            android:screenOrientation="portrait" android:turnScreenOn="false"/>
+        <activity android:name=".dashboardg"
+            android:screenOrientation="portrait" android:turnScreenOn="false"/>
+        <activity android:name=".signUpactivity"
+            android:screenOrientation="portrait" android:turnScreenOn="true"/>
+        <activity android:name=".loginActivityG"
+            android:screenOrientation="portrait" android:turnScreenOn="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

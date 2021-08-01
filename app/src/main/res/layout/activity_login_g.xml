@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/signinbg"
     tools:context=".loginActivityG">
-
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/loginTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
-        android:onClick="postfragment"
+
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="58sp"
@@ -28,8 +30,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
+        android:layout_width="365dp"
+        android:layout_height="217dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:orientation="vertical"
@@ -54,7 +56,7 @@
                 android:inputType="textEmailAddress"
                 android:textColor="#040D3E"
                 android:textColorHint="@color/black"
-                android:transitionName="emailTransition"/>
+                android:transitionName="emailTransition" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -76,7 +78,7 @@
                 android:inputType="textPassword"
                 android:textColor="#040D3E"
                 android:textColorHint="@color/black"
-                android:transitionName="passwordTransition"/>
+                android:transitionName="passwordTransition" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -94,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:text="Remember Me"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="47dp"
                 tools:layout_editor_absoluteY="548dp" />
@@ -105,9 +107,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="80dp"
                 android:onClick="forgotPassword"
-                android:text="Forgot Password"
+                android:text="Forgot Password?"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
 
@@ -137,17 +139,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="SignUp"
-        android:text="Sign Up?"
+        android:text="@string/signuo"
+
         android:textColor="@color/white"
         android:textSize="21sp"
-        android:textStyle="bold"
+
+        android:textStyle="italic|bold"
+        android:transitionName="textviewTransition"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signupBttn"
-        app:layout_constraintVertical_bias="0.24"
-        android:transitionName="textviewTransition"/>
+        app:layout_constraintVertical_bias="0.797" />
 
     <ProgressBar
         android:id="@+id/progressBarg"
@@ -161,5 +165,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
