@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bgforjoin"
-    tools:context=".fragmentForcreate"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    tools:context=".fragmentForcreate">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/cgprofpic"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
+
+        android:layout_height="71dp"
         android:layout_gravity="center"
-        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:src="@drawable/userimage"
+        android:src="@drawable/grp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +34,7 @@
 
 
         <TextView
+            android:id="@+id/fragusername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -65,37 +66,34 @@
             app:hintTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cggrupname"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#E1C7C7"
+                android:gravity="center_horizontal"
                 android:inputType="textShortMessage"
-                android:textColor="@color/black"
-                android:id="@+id/cggrupname"
-                android:textColorHint="@color/white"
-                android:textStyle="bold"
                 android:textAlignment="center"
-                android:gravity="center_horizontal" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/white"
+                android:textStyle="bold" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/creategrup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/creategrup"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="40dp"
             android:background="@drawable/chatbutton"
             android:text="Create Group"
             android:textColor="@color/white"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
 
     </LinearLayout>
-
-
 
 
 </LinearLayout>

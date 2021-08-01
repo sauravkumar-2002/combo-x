@@ -30,6 +30,7 @@ public class dashboardg extends AppCompatActivity {
     TextView helloMSg;
     TextView icText;
     String uid, link;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +92,7 @@ public class dashboardg extends AppCompatActivity {
                 umd = new userdatamodel();
                 umd = snapshot.getValue(userdatamodel.class);
 
-                String username = umd.getUsername();
+                 username = umd.getUsername();
 
                 helloMSg.setText("Hello,\n" + username);
 
@@ -118,13 +119,19 @@ public class dashboardg extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void startchat(View view) {
         Intent intent = new Intent(getApplicationContext(), tabbedWindow.class);
-        intent.putExtra("check",0);
+        intent.putExtra("check", 0);
         startActivity(intent);
     }
 
     public void createroom(View view) {
+        Bundle bundle=new Bundle();
+        bundle.putString("username",username);
+        bundle.putString("link",link);
         fragmentForcreate fragmentForcreate = new fragmentForcreate();
+        fragmentForcreate.setArguments(bundle);
         fragmentForcreate.show(getSupportFragmentManager(), fragmentForcreate.getTag());
+
+
 
 
     }

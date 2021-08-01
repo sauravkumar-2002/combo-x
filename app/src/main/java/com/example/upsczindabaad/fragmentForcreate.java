@@ -7,9 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -77,8 +79,19 @@ public class fragmentForcreate extends BottomSheetDialogFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_forcreate, container, false);
 
-
+        TextView usernamef=v.findViewById(R.id.fragusername);
         ImageView cgprofilepic = v.findViewById(R.id.cgprofpic);
+
+        String str=getArguments().getString("username");
+        usernamef.setText(str);
+
+        String link=getArguments().getString("link");
+
+
+
+
+
+
         //groupname= v.findViewById(R.id.cggrupname);
         groupname = v.findViewById(R.id.cggrupname);
         v.findViewById(R.id.cgprofpic).setOnClickListener(new View.OnClickListener() {
