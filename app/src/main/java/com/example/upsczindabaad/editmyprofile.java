@@ -48,7 +48,8 @@ Bitmap bitmap;
     String uid;
     String s1;
     boolean x=false;
-String profimsage,edtusername,edtemail,edtfullname,edtuid,edtpassword;
+String
+        profimsage,edtusername,edtemail,edtfullname,edtuid,edtpassword;
 TextView txtusername,txtemail,txtfullname;
     userdatamodel usrd,profimage;
     String link;

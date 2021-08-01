@@ -168,6 +168,7 @@ public class bottomFragmentJoin extends BottomSheetDialogFragment {
                                                 Intent intent=new Intent(getContext(),tabbedWindow.class);
                                                 intent.putExtra("check",1);
                                                 startActivity(intent);
+                                                dismiss();
 
 
                                             }
