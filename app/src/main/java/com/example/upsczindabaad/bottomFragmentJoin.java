@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -87,6 +88,9 @@ public class bottomFragmentJoin extends BottomSheetDialogFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_bottom_join, container, false);
         joinGrp = v.findViewById(R.id.joinGrp);
+        TextView tvuser=v.findViewById(R.id.user45);
+        String str=getArguments().getString("username");
+        tvuser.setText(str);
         invitecode = v.findViewById(R.id.inviteCode);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

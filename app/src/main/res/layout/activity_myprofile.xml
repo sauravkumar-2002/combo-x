@@ -15,17 +15,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:gravity="right"
             android:layout_marginRight="12dp"
             android:layout_marginBottom="20dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:onClick="logout"
-                android:text="logout"
-                android:textColor="@color/white" />
 
 
             <TextView
@@ -40,6 +34,7 @@
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/mpswitchdark"
                 android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
@@ -121,20 +116,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
-            android:text="Saved/Starred Messages"
-            android:textColor="@color/white"
-            android:textSize="23dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/staaredmsgrecv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="9dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
             android:text=" Your Groups"
             android:textColor="@color/white"
             android:textSize="23dp" />
@@ -144,6 +125,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
+        <ImageView
+            android:layout_width="67dp"
+            android:layout_gravity="center"
+            android:layout_height="67dp"
+            android:src="@drawable/logoutpng"
+            android:onClick="logout"/>
 
     </LinearLayout>
 </ScrollView>

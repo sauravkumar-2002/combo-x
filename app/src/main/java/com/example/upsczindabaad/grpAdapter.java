@@ -2,6 +2,7 @@ package com.example.upsczindabaad;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
 
 public class grpAdapter extends RecyclerView.Adapter<grpAdapter.viewHolder> {
-
+    String str;
 
     ArrayList<grpChatModel> data;
     Context context;
@@ -36,8 +39,25 @@ public class grpAdapter extends RecyclerView.Adapter<grpAdapter.viewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
+
         holder.groupName.setText(data.get(position).getGrpName());
-        holder.groupImage.setImageResource(data.get(position).getGrpImage());
+     //   Log.v("ghjk",holder.groupName.getText().toString());
+       // holder.groupImage.setImageResource();
+    // holder.groupImage.setImageResource(R.drawable.grp);
+
+
+           //Toasty.success(context,data.get(position).getGrpImage()).show();
+if(data.get(position).getGrpImage().equals("notuploadeimg")){
+    holder.groupImage.setImageResource(R.drawable.grp);
+    str="https://firebasestorage.googleapis.com/v0/b/upsczindabaad-6d9bf.appspot.com/o/grup.jpeg?alt=media&token=275f272e-5ae6-4fe8-8ab6-e882e4860329";
+}
+else{
+    str=data.get(position).getGrpImage();
+    Glide.with(context)
+            .load(data.get(position).getGrpImage())
+            .into(holder.groupImage);
+}
+
 
 
         holder.grpCard.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +65,7 @@ public class grpAdapter extends RecyclerView.Adapter<grpAdapter.viewHolder> {
             public void onClick(View v) {
 
               //  Toasty.success(context,"hello").show();
-                String str = "https://firebasestorage.googleapis.com/v0/b/upsczindabaad-6d9bf.appspot.com/o/image%2Fprof.png?alt=media&token=6166f093-4a90-4dce-8034-539a9dce792f";
+                //str = "https://firebasestorage.googleapis.com/v0/b/upsczindabaad-6d9bf.appspot.com/o/image%2Fprof.png?alt=media&token=6166f093-4a90-4dce-8034-539a9dce792f";
                 Intent intent = new Intent(context, chtwndGrp.class);
                 intent.putExtra("name", data.get(position).getGrpName());
                 intent.putExtra("image", str);
@@ -75,8 +95,8 @@ public class grpAdapter extends RecyclerView.Adapter<grpAdapter.viewHolder> {
             super(itemView);
 
             grpCard = itemView.findViewById(R.id.singleCard);
-            groupImage = (ImageView) itemView.findViewById(R.id.singleprof);
-            groupName = (TextView) itemView.findViewById(R.id.singleusername);
+            groupImage =  itemView.findViewById(R.id.singleprof);
+            groupName =  itemView.findViewById(R.id.singleusername);
         }
     }
 }

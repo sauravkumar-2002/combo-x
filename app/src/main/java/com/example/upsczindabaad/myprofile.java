@@ -6,11 +6,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,6 +36,7 @@ public class myprofile extends AppCompatActivity {
     Uri profilepicurl;
     String uid, link;
     RecyclerView grouprecView;
+    SwitchCompat sw;
 
     ArrayList<grpChatModel> datalist;
     grpAdapterForprofile grpAdapterForprofile;
@@ -46,6 +50,19 @@ public class myprofile extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         profpic = findViewById(R.id.mpprof);
         profilefullname = findViewById(R.id.profileFullname);
+        sw=findViewById(R.id.mpswitchdark);
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(buttonView.isChecked()){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
+                else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+            }
+        });
+
         profileusername = findViewById(R.id.profileUserName);
         grouprecView=findViewById(R.id.groupsrecv);
 
@@ -76,11 +93,12 @@ public class myprofile extends AppCompatActivity {
                 for (DataSnapshot d : snapshot.getChildren()) {
                     modeltotalgroup md=d.getValue(modeltotalgroup.class);
                     String groupName=md.getGroupName();
+                    String grupimg=md.getGrouppic();
 
 
                     grpChatModel grp=new grpChatModel();
                     grp.setGrpName(groupName);
-                    grp.setGrpImage(R.drawable.arturo);
+                    grp.setGrpImage(grupimg);
 
                     datalist.add(grp);
 

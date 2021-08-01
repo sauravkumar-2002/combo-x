@@ -126,11 +126,12 @@ public class groupsFragment extends Fragment {
                     modeltotalgroup md = d.getValue(modeltotalgroup.class);
                     String groupName = md.getGroupName();
                     String grpInviteCode=md.getInvitecode();
+                    String gruppic=md.getGrouppic();
 
 
                     grpChatModel grp = new grpChatModel();
                     grp.setGrpName(groupName);
-                    grp.setGrpImage(R.drawable.arturo);
+                    grp.setGrpImage(gruppic);
                     grp.setGrpInviteCode(grpInviteCode);
 
                     glist.add(grp);

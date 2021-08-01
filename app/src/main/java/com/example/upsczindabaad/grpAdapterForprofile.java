@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class grpAdapterForprofile extends RecyclerView.Adapter<viewholder> {
@@ -33,8 +35,15 @@ public class grpAdapterForprofile extends RecyclerView.Adapter<viewholder> {
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
 
         holder.grpname.setText(datalist.get(position).getGrpName());
-        holder.grpImage.setImageResource(datalist.get(position).getGrpImage());
-
+       // holder.grpImage.setImageResource(R.drawable.grp);
+        if(datalist.get(position).getGrpImage().equals("notuploadeimg")){
+            holder.grpImage.setImageResource(R.drawable.grp);
+        }
+else{
+            Glide.with(context)
+                    .load(datalist.get(position).getGrpImage())
+                    .into(holder.grpImage);
+        }
 
 
         holder.grpCard.setOnClickListener(new View.OnClickListener() {

@@ -28,6 +28,8 @@
                 android:id="@+id/imagempimage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:foregroundGravity="center"
+
                 android:src="@drawable/test" />
 
             <ImageView
@@ -76,18 +78,7 @@
             android:layout_marginLeft="19dp"
             android:layout_marginTop="15dp"
             android:id="@+id/commentmpimage"/>
-<TextView
-    android:layout_width="15dp"
-    android:layout_height="35dp"
-    android:textColor="@color/white"
-    android:id="@+id/commentmpimagetv"
-    />
-        <TextView
-            android:layout_width="15dp"
-            android:layout_height="35dp"
-            android:textColor="@color/white"
-            android:id="@+id/likempimagetv"
-            />
+
 
 
 

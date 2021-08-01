@@ -130,6 +130,7 @@ public class chtwndGrp extends AppCompatActivity {
 
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference("groupChat").child(inviteCode);
                     reference.push().setValue(mp);
+                    grpmsg.setText("");
                     //  fetchChats();
 
                 }

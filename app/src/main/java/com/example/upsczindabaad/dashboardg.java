@@ -109,8 +109,11 @@ public class dashboardg extends AppCompatActivity {
     }
 
     public void joinroom(View view) {
-
+        Bundle bundle=new Bundle();
+        bundle.putString("username",username);
+        bundle.putString("link",link);
         bottomFragmentJoin bottomFragmentJoin = new bottomFragmentJoin();
+        bottomFragmentJoin.setArguments(bundle);
         bottomFragmentJoin.show(getSupportFragmentManager(), bottomFragmentJoin.getTag());
 
 

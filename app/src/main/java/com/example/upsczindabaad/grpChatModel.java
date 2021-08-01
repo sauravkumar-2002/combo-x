@@ -2,16 +2,8 @@ package com.example.upsczindabaad;
 
 public class grpChatModel {
 
-    String grpName,grpInviteCode;
-    int grpImage;
-
-    public String getGrpInviteCode() {
-        return grpInviteCode;
-    }
-
-    public void setGrpInviteCode(String grpInviteCode) {
-        this.grpInviteCode = grpInviteCode;
-    }
+    String grpName, grpInviteCode;
+    String grpImage;
 
     public String getGrpName() {
         return grpName;
@@ -21,11 +13,19 @@ public class grpChatModel {
         this.grpName = grpName;
     }
 
-    public int getGrpImage() {
+    public String getGrpInviteCode() {
+        return grpInviteCode;
+    }
+
+    public void setGrpInviteCode(String grpInviteCode) {
+        this.grpInviteCode = grpInviteCode;
+    }
+
+    public String getGrpImage() {
         return grpImage;
     }
 
-    public void setGrpImage(int grpImage) {
+    public void setGrpImage(String grpImage) {
         this.grpImage = grpImage;
     }
 }
