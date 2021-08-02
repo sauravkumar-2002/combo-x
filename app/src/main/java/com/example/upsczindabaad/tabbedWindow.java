@@ -50,7 +50,7 @@ public class tabbedWindow extends AppCompatActivity {
 
        setUserName();
 
-
+//
 
         tabLayout.addTab(tabLayout.newTab().setText("Friends"));
         tabLayout.addTab(tabLayout.newTab().setText("Groups"));
