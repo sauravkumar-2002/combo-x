@@ -29,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class myprofile extends AppCompatActivity {
-
+TextView tv;
     ImageView profpic;
     TextView profilefullname, profileusername;
     userdatamodel umd1, profimage;

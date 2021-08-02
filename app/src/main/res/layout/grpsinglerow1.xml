@@ -22,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:textSize="8dp"
+            android:textSize="13dp"
+            android:textColor="#FA0303"
             android:text="Sandy" />
 
 
